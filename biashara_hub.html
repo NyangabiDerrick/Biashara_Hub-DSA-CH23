@@ -1,0 +1,2865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Biashara Hub — Premium E-Commerce</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   BIASHARA HUB v2 — DESIGN SYSTEM
+   Aesthetic: Refined African Luxury — obsidian, gold, terracotta.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --obsidian:#0d0d0d;--deep:#141414;--surface:#1c1c1c;--surface-2:#242424;--surface-3:#2e2e2e;
+  --border:rgba(255,255,255,0.07);--border-strong:rgba(255,255,255,0.14);
+  --gold:#c9a84c;--gold-light:#e2c97e;--gold-dim:rgba(201,168,76,0.15);
+  --terracotta:#b85c38;--terra-light:#d47655;
+  --cream:#f5f0e8;--cream-dim:rgba(245,240,232,0.7);
+  --text-primary:#f0ebe0;--text-secondary:rgba(240,235,224,0.55);--text-muted:rgba(240,235,224,0.3);
+  --success:#4caf7d;--danger:#e05252;--info:#5b9bd5;
+  --radius-sm:4px;--radius-md:8px;--radius-lg:16px;--radius-xl:24px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.4);--shadow-md:0 8px 32px rgba(0,0,0,.5);
+  --shadow-lg:0 24px 64px rgba(0,0,0,.7);--shadow-gold:0 4px 24px rgba(201,168,76,.2);
+  --font-display:'Cormorant Garamond',serif;--font-body:'DM Sans',sans-serif;--font-mono:'DM Mono',monospace;
+  --transition:0.22s cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--obsidian);color:var(--text-primary);font-family:var(--font-body);font-weight:300;line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--deep)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+::selection{background:var(--gold-dim);color:var(--gold-light)}
+
+/* ── UTILITIES ── */
+.hidden{display:none!important}
+.badge{display:inline-flex;align-items:center;justify-content:center;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;font-family:var(--font-mono);letter-spacing:.04em}
+.badge-gold{background:var(--gold-dim);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+.badge-terra{background:rgba(184,92,56,.15);color:var(--terra-light);border:1px solid rgba(184,92,56,.3)}
+.badge-success{background:rgba(76,175,125,.12);color:var(--success);border:1px solid rgba(76,175,125,.25)}
+.badge-danger{background:rgba(224,82,82,.12);color:var(--danger);border:1px solid rgba(224,82,82,.25)}
+.badge-info{background:rgba(91,155,213,.12);color:var(--info);border:1px solid rgba(91,155,213,.25)}
+.divider{height:1px;background:var(--border);margin:16px 0}
+.tag{padding:4px 12px;border-radius:20px;font-size:11px;background:var(--surface-2);color:var(--text-secondary);border:1px solid var(--border);cursor:pointer;transition:var(--transition);font-family:var(--font-mono);letter-spacing:.04em}
+.tag:hover,.tag.active{background:var(--gold-dim);color:var(--gold);border-color:rgba(201,168,76,.4)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:none;transition:var(--transition);text-decoration:none}
+.btn-primary{background:var(--gold);color:var(--obsidian);box-shadow:var(--shadow-gold)}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 6px 32px rgba(201,168,76,.35)}
+.btn-outline{background:transparent;color:var(--text-primary);border:1px solid var(--border-strong)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.btn-ghost{background:transparent;color:var(--text-secondary);border:none}
+.btn-ghost:hover{color:var(--text-primary)}
+.btn-danger{background:rgba(224,82,82,.15);color:var(--danger);border:1px solid rgba(224,82,82,.3)}
+.btn-danger:hover{background:rgba(224,82,82,.25)}
+.btn-success{background:rgba(76,175,125,.15);color:var(--success);border:1px solid rgba(76,175,125,.3)}
+.btn-success:hover{background:rgba(76,175,125,.25)}
+.btn-sm{padding:6px 16px;font-size:12px}
+.btn-lg{padding:14px 36px;font-size:14px}
+.input{width:100%;padding:10px 16px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-primary);font-family:var(--font-body);font-size:14px;transition:var(--transition);outline:none}
+.input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
+.input::placeholder{color:var(--text-muted)}
+.select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px;cursor:pointer}
+label{display:block;font-size:12px;color:var(--text-secondary);margin-bottom:6px;letter-spacing:.05em;text-transform:uppercase;font-weight:500}
+textarea.input{resize:vertical;min-height:80px}
+
+/* ── LOGIN SCREEN ── */
+#login-screen{
+  position:fixed;inset:0;z-index:9000;
+  background:var(--obsidian);
+  display:flex;align-items:center;justify-content:center;
+}
+.login-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(201,168,76,.07),transparent),
+             radial-gradient(ellipse 40% 60% at 80% 70%,rgba(184,92,56,.05),transparent);
+}
+.login-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(201,168,76,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.025) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%);
+}
+.login-card{
+  position:relative;z-index:1;
+  background:var(--surface);border:1px solid var(--border-strong);
+  border-radius:var(--radius-xl);padding:48px;
+  width:420px;box-shadow:var(--shadow-lg);
+}
+.login-logo{
+  display:flex;align-items:center;gap:14px;margin-bottom:36px;
+}
+.login-logo-icon{
+  width:48px;height:48px;border-radius:var(--radius-md);
+  background:linear-gradient(135deg,var(--terracotta),var(--gold));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:24px;color:var(--obsidian);font-weight:600;
+  box-shadow:var(--shadow-gold);
+}
+.login-logo-name{font-family:var(--font-display);font-size:28px;font-weight:300}
+.login-logo-name span{color:var(--gold)}
+.login-title{font-family:var(--font-display);font-size:22px;font-weight:300;margin-bottom:6px}
+.login-subtitle{font-size:13px;color:var(--text-secondary);margin-bottom:28px}
+.login-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:24px}
+.login-tab{
+  flex:1;padding:10px;text-align:center;font-size:13px;
+  font-weight:500;color:var(--text-muted);cursor:pointer;
+  border-bottom:2px solid transparent;transition:var(--transition);
+  letter-spacing:.04em;text-transform:uppercase;
+}
+.login-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.login-form{display:flex;flex-direction:column;gap:16px}
+.login-hint{
+  background:var(--surface-2);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px 16px;
+  font-size:12px;color:var(--text-secondary);font-family:var(--font-mono);
+  line-height:1.7;margin-top:8px;
+}
+.login-hint strong{color:var(--gold)}
+
+/* ── PANELS & CARDS ── */
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.panel-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.panel-body{padding:24px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);transition:var(--transition);position:relative;overflow:hidden}
+.card:hover{border-color:var(--border-strong);box-shadow:var(--shadow-md)}
+
+/* ── TOASTS ── */
+#toast-container{position:fixed;top:80px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px}
+.toast{display:flex;align-items:center;gap:12px;padding:12px 18px;border-radius:var(--radius-md);background:var(--surface-3);border:1px solid var(--border-strong);box-shadow:var(--shadow-lg);font-size:13px;min-width:280px;animation:toast-in .3s cubic-bezier(0.4,0,0.2,1)}
+.toast-success{border-left:3px solid var(--success)}
+.toast-error{border-left:3px solid var(--danger)}
+.toast-info{border-left:3px solid var(--gold)}
+@keyframes toast-in{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:.3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-xl);width:100%;max-width:580px;max-height:90vh;overflow-y:auto;transform:scale(.94) translateY(12px);transition:.3s cubic-bezier(.4,0,.2,1);box-shadow:var(--shadow-lg)}
+.modal-overlay.open .modal{transform:scale(1) translateY(0)}
+.modal-header{padding:24px 28px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:1}
+.modal-title{font-family:var(--font-display);font-size:22px;font-weight:400}
+.modal-close{width:32px;height:32px;border-radius:50%;background:var(--surface-2);border:none;cursor:pointer;color:var(--text-secondary);font-size:18px;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+.modal-close:hover{background:var(--surface-3);color:var(--text-primary)}
+.modal-body{padding:24px 28px}
+.modal-footer{padding:16px 28px 24px;display:flex;align-items:center;justify-content:flex-end;gap:12px}
+
+/* ── NAVIGATION ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(13,13,13,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:pointer}
+.nav-logo{width:36px;height:36px;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--terracotta),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:18px;color:var(--obsidian);font-weight:600;box-shadow:var(--shadow-gold)}
+.nav-name{font-family:var(--font-display);font-size:20px;font-weight:400;color:var(--text-primary);letter-spacing:.02em}
+.nav-name span{color:var(--gold)}
+.nav-center{display:flex;align-items:center;gap:4px}
+.nav-link{padding:8px 16px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;color:var(--text-secondary);cursor:pointer;transition:var(--transition);letter-spacing:.04em;border:none;background:none}
+.nav-link:hover,.nav-link.active{color:var(--text-primary);background:var(--surface)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-icon-btn{width:38px;height:38px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);cursor:pointer;color:var(--text-secondary);font-size:16px;display:flex;align-items:center;justify-content:center;transition:var(--transition);position:relative}
+.nav-icon-btn:hover{border-color:var(--gold);color:var(--gold)}
+.nav-badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--terracotta);color:white;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono)}
+.nav-user{display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);cursor:pointer;font-size:13px;color:var(--text-secondary);transition:var(--transition)}
+.nav-user:hover{border-color:var(--gold);color:var(--gold)}
+.nav-user-avatar{width:24px;height:24px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold)}
+.admin-badge{padding:2px 8px;border-radius:20px;font-size:10px;background:rgba(184,92,56,.2);color:var(--terra-light);border:1px solid rgba(184,92,56,.3);font-family:var(--font-mono);letter-spacing:.04em}
+
+/* ── APP LAYOUT ── */
+#app{margin-top:64px;min-height:calc(100vh - 64px)}
+.page{display:none;animation:fade-in .3s ease}
+.page.active{display:block}
+@keyframes fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.container{max-width:1400px;margin:0 auto;padding:0 32px}
+.page-header{padding:48px 0 36px;border-bottom:1px solid var(--border);margin-bottom:36px}
+.page-title{font-family:var(--font-display);font-size:40px;font-weight:300;letter-spacing:-.02em}
+.page-title span{color:var(--gold);font-style:italic}
+.page-subtitle{color:var(--text-secondary);font-size:14px;margin-top:6px}
+
+/* ── HERO ── */
+.hero{min-height:540px;position:relative;overflow:hidden;display:flex;align-items:center;background:linear-gradient(135deg,var(--deep) 0%,#1a1008 50%,var(--deep) 100%)}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 70% 50%,rgba(201,168,76,.08),transparent),radial-gradient(ellipse 50% 50% at 20% 80%,rgba(184,92,56,.06),transparent)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
+.hero-content{position:relative;z-index:1;padding:80px 32px;max-width:1400px;margin:0 auto;width:100%}
+.hero-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold)}
+.hero-title{font-family:var(--font-display);font-size:68px;font-weight:300;line-height:1.05;letter-spacing:-.03em;margin-bottom:24px;max-width:700px}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-desc{font-size:15px;color:var(--text-secondary);max-width:440px;line-height:1.8;margin-bottom:36px}
+.hero-actions{display:flex;gap:12px;align-items:center}
+.hero-stats{display:flex;gap:48px;margin-top:60px;padding-top:40px;border-top:1px solid var(--border)}
+.hero-stat-value{font-family:var(--font-display);font-size:36px;font-weight:300;color:var(--gold);line-height:1}
+.hero-stat-label{font-size:12px;color:var(--text-muted);margin-top:4px;letter-spacing:.04em}
+
+/* ── SEARCH ── */
+.search-bar{display:flex;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-md);overflow:hidden;margin:32px 0}
+.search-input{flex:1;padding:14px 20px;background:transparent;border:none;color:var(--text-primary);font-family:var(--font-body);font-size:14px;outline:none}
+.search-input::placeholder{color:var(--text-muted)}
+.search-btn{padding:12px 28px;background:var(--gold);border:none;cursor:pointer;color:var(--obsidian);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;transition:var(--transition)}
+.search-btn:hover{background:var(--gold-light)}
+.search-wrapper{position:relative;flex:1}
+.search-suggestions{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--surface-2);border:1px solid var(--border-strong);border-radius:var(--radius-md);z-index:100;overflow:hidden;box-shadow:var(--shadow-lg)}
+.search-suggestion-item{padding:12px 20px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:12px;transition:var(--transition)}
+.search-suggestion-item:hover{background:var(--surface-3)}
+
+/* ── FILTERS ── */
+.filters-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:28px}
+.filters-label{font-size:11px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;font-weight:500;margin-right:4px}
+
+/* ── PRODUCTS GRID ── */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.product-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;transition:var(--transition);cursor:pointer}
+.product-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.product-img{width:100%;height:200px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--surface-2),var(--surface-3))}
+.product-discount-badge{position:absolute;top:12px;right:12px;padding:3px 10px;border-radius:20px;background:var(--terracotta);color:white;font-size:11px;font-weight:600;font-family:var(--font-mono)}
+.product-wishlist-btn{position:absolute;top:12px;left:12px;width:30px;height:30px;border-radius:50%;background:rgba(13,13,13,.6);backdrop-filter:blur(8px);border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+.product-wishlist-btn:hover,.product-wishlist-btn.active{color:var(--terracotta);border-color:var(--terracotta)}
+.product-info{padding:16px}
+.product-category{font-size:11px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-weight:500;margin-bottom:6px}
+.product-name{font-family:var(--font-display);font-size:17px;font-weight:400;line-height:1.3;margin-bottom:8px}
+.product-rating{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-secondary);margin-bottom:10px}
+.stars{color:var(--gold)}
+.product-price-row{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-family:var(--font-display);font-size:22px;font-weight:400;color:var(--gold)}
+.product-original-price{font-size:13px;color:var(--text-muted);text-decoration:line-through;margin-left:6px}
+.product-add-btn{width:34px;height:34px;border-radius:var(--radius-sm);background:var(--gold-dim);border:1px solid rgba(201,168,76,.3);color:var(--gold);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+.product-add-btn:hover{background:var(--gold);color:var(--obsidian)}
+.product-stock{font-size:11px;margin-top:8px;font-family:var(--font-mono)}
+.stock-low{color:var(--terracotta)}.stock-ok{color:var(--success)}.stock-out{color:var(--danger)}
+
+/* ── SIDEBAR LAYOUT ── */
+.sidebar-layout{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
+.sidebar{position:sticky;top:84px}
+.sidebar-section{margin-bottom:24px}
+.sidebar-title{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);font-weight:500;margin-bottom:14px}
+.price-range{width:100%;accent-color:var(--gold);cursor:pointer}
+.price-display{display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);font-family:var(--font-mono);margin-top:10px}
+
+/* ── CART ── */
+.cart-layout{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
+.cart-items{display:flex;flex-direction:column;gap:12px}
+.cart-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;display:flex;align-items:center;gap:16px;transition:var(--transition)}
+.cart-item:hover{border-color:var(--border-strong)}
+.cart-item-img{width:72px;height:72px;border-radius:var(--radius-sm);background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0}
+.cart-item-info{flex:1}
+.cart-item-name{font-family:var(--font-display);font-size:16px;font-weight:400;margin-bottom:4px}
+.cart-item-meta{font-size:12px;color:var(--text-secondary)}
+.cart-item-price{font-family:var(--font-display);font-size:20px;font-weight:400;color:var(--gold);text-align:right}
+.qty-control{display:flex;align-items:center;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+.qty-btn{width:30px;height:30px;background:var(--surface-2);border:none;color:var(--text-primary);cursor:pointer;font-size:16px;transition:var(--transition)}
+.qty-btn:hover{background:var(--surface-3);color:var(--gold)}
+.qty-val{width:40px;text-align:center;font-family:var(--font-mono);font-size:13px;background:transparent;color:var(--text-primary);border:none;outline:none}
+.cart-summary{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;position:sticky;top:84px}
+.summary-title{font-family:var(--font-display);font-size:20px;font-weight:400;margin-bottom:20px}
+.summary-row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:12px;color:var(--text-secondary)}
+.summary-row.total{color:var(--text-primary);font-family:var(--font-display);font-size:20px;padding-top:12px;border-top:1px solid var(--border);margin-top:4px}
+.summary-value{font-family:var(--font-mono)}
+.promo-row{display:flex;gap:8px;margin:16px 0}
+.coupon-badge{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--gold-dim);border:1px solid rgba(201,168,76,.3);border-radius:var(--radius-sm);font-size:13px;color:var(--gold);font-family:var(--font-mono);margin-bottom:12px}
+.coupon-remove{cursor:pointer;color:var(--text-muted);transition:var(--transition)}
+.coupon-remove:hover{color:var(--danger)}
+.undo-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;color:var(--text-secondary);margin-bottom:12px}
+.empty-cart{text-align:center;padding:80px 20px}
+.empty-icon{font-size:64px;margin-bottom:20px;opacity:.3}
+
+/* ── ORDERS ── */
+.orders-list{display:flex;flex-direction:column;gap:16px}
+.order-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:20px 24px;transition:var(--transition);cursor:pointer}
+.order-card:hover{border-color:var(--border-strong)}
+.order-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.order-id{font-family:var(--font-mono);font-size:13px;color:var(--gold)}
+.order-date{font-size:12px;color:var(--text-secondary)}
+.order-items-preview{display:flex;gap:8px;margin-bottom:12px}
+.order-item-thumb{width:48px;height:48px;border-radius:var(--radius-sm);background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:22px;border:1px solid var(--border)}
+.order-footer{display:flex;align-items:center;justify-content:space-between}
+.order-total{font-family:var(--font-display);font-size:20px;color:var(--gold)}
+.order-status-timeline{display:flex;align-items:center;overflow-x:auto;padding-bottom:4px}
+.timeline-step{display:flex;flex-direction:column;align-items:center;flex:1;min-width:80px;position:relative}
+.timeline-step::before{content:'';position:absolute;top:14px;left:-50%;right:50%;height:2px;background:var(--border)}
+.timeline-step:first-child::before{display:none}
+.timeline-step.done::before{background:var(--gold)}
+.timeline-dot{width:28px;height:28px;border-radius:50%;background:var(--surface-2);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;position:relative;z-index:1;margin-bottom:8px}
+.timeline-step.done .timeline-dot{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
+.timeline-step.active .timeline-dot{background:var(--terracotta);border-color:var(--terra-light);color:white;animation:pulse 2s infinite}
+.timeline-label{font-size:11px;color:var(--text-muted);text-align:center}
+.timeline-step.done .timeline-label,.timeline-step.active .timeline-label{color:var(--text-secondary)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,92,56,.4)}50%{box-shadow:0 0 0 6px rgba(184,92,56,0)}}
+
+/* ── DASHBOARD ── */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:36px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px;transition:var(--transition)}
+.stat-card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+.stat-label{font-size:12px;color:var(--text-secondary);letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px;font-weight:500}
+.stat-value{font-family:var(--font-display);font-size:32px;font-weight:300;line-height:1}
+.stat-value.gold{color:var(--gold)}
+.stat-change{font-size:12px;margin-top:8px;font-family:var(--font-mono)}
+.stat-up{color:var(--success)}.stat-down{color:var(--danger)}
+.dashboard-grid{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:24px}
+.chart-area{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px}
+.chart-title{font-size:14px;font-weight:500;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between}
+.mini-bar-chart{display:flex;align-items:flex-end;gap:6px;height:100px}
+.mini-bar{flex:1;background:var(--gold-dim);border-radius:2px 2px 0 0;border-bottom:2px solid var(--gold);transition:height .5s ease;position:relative;cursor:pointer}
+.mini-bar:hover{background:rgba(201,168,76,.25)}
+.mini-bar-label{text-align:center;font-size:10px;color:var(--text-muted);margin-top:6px}
+.top-products-list{display:flex;flex-direction:column;gap:12px}
+.top-product-row{display:flex;align-items:center;gap:12px;padding:10px;border-radius:var(--radius-sm);transition:var(--transition)}
+.top-product-row:hover{background:var(--surface-2)}
+.top-product-rank{font-family:var(--font-mono);font-size:13px;color:var(--text-muted);width:20px}
+.top-product-icon{font-size:24px;width:40px;text-align:center}
+.top-product-info{flex:1}
+.top-product-name{font-size:13px;font-weight:500}
+.top-product-sales{font-size:12px;color:var(--text-secondary)}
+.top-product-revenue{font-family:var(--font-mono);font-size:13px;color:var(--gold)}
+.recent-orders-table{width:100%;border-collapse:collapse}
+.recent-orders-table th{padding:10px 16px;text-align:left;font-size:11px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;font-weight:500;border-bottom:1px solid var(--border)}
+.recent-orders-table td{padding:12px 16px;font-size:13px;border-bottom:1px solid var(--border)}
+.recent-orders-table tr:last-child td{border-bottom:none}
+.recent-orders-table tr:hover td{background:rgba(255,255,255,.02)}
+
+/* ── INVENTORY ── */
+.inventory-table{width:100%;border-collapse:collapse}
+.inventory-table th{padding:12px 16px;text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);font-weight:500;background:var(--surface-2);border-bottom:1px solid var(--border)}
+.inventory-table td{padding:14px 16px;font-size:13px;border-bottom:1px solid var(--border)}
+.inventory-table tr:hover td{background:rgba(255,255,255,.02)}
+.stock-indicator{display:flex;align-items:center;gap:8px}
+.progress-bar{height:4px;border-radius:2px;background:var(--surface-3);overflow:hidden;width:80px}
+.progress-fill{height:100%;border-radius:2px;transition:width .5s ease}
+.table-action{display:flex;gap:6px}
+.pagination{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:24px}
+.page-btn{width:36px;height:36px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+.page-btn:hover,.page-btn.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
+
+/* ── PRODUCT DETAIL ── */
+.product-detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;padding:40px 0}
+.product-detail-img{width:100%;aspect-ratio:1;border-radius:var(--radius-lg);background:linear-gradient(135deg,var(--surface-2),var(--surface-3));display:flex;align-items:center;justify-content:center;font-size:120px;border:1px solid var(--border);position:relative}
+.product-detail-name{font-family:var(--font-display);font-size:38px;font-weight:300;line-height:1.15;margin-bottom:12px}
+.product-detail-price{font-family:var(--font-display);font-size:36px;font-weight:300;color:var(--gold);margin-bottom:8px}
+.product-detail-desc{color:var(--text-secondary);font-size:14px;line-height:1.8;margin-bottom:24px}
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.spec-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px}
+.spec-label{font-size:11px;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.spec-value{font-size:13px;font-family:var(--font-mono)}
+.qty-large{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.detail-actions{display:flex;gap:12px}
+
+/* ── WISHLIST ── */
+.wishlist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+
+/* ── ADMIN CLIENT TABLE ── */
+.clients-table{width:100%;border-collapse:collapse}
+.clients-table th{padding:12px 16px;text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);font-weight:500;background:var(--surface-2);border-bottom:1px solid var(--border)}
+.clients-table td{padding:14px 16px;font-size:13px;border-bottom:1px solid var(--border)}
+.clients-table tr:hover td{background:rgba(255,255,255,.02)}
+
+/* ── QUEUE VISUALISER ── */
+.queue-visualiser{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;margin-top:16px}
+.queue-title{font-size:12px;font-family:var(--font-mono);color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+.queue-items{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.queue-item{background:var(--surface-3);border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:8px 14px;font-size:12px;font-family:var(--font-mono);color:var(--gold);flex-shrink:0;position:relative}
+.queue-item.processing{border-color:var(--terracotta);color:var(--terra-light);animation:pulse 1.5s infinite}
+.queue-item::before{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:10px}
+.queue-item:last-child::before{display:none}
+
+/* ── BENCHMARK ── */
+.benchmark-panel{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);padding:20px;margin-top:20px}
+.benchmark-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border)}
+.benchmark-row:last-child{border-bottom:none}
+.benchmark-name{font-size:13px;font-family:var(--font-mono);color:var(--text-secondary);flex:1}
+.benchmark-time{font-size:13px;font-family:var(--font-mono);color:var(--gold);width:80px;text-align:right}
+.benchmark-complexity{font-size:11px;color:var(--text-muted);width:100px;text-align:right}
+.benchmark-bar-wrap{width:120px;height:6px;background:var(--surface-3);border-radius:3px;overflow:hidden}
+.benchmark-bar{height:100%;border-radius:3px;background:var(--gold);transition:width .8s ease}
+
+/* ── STACK HISTORY PANEL ── */
+.history-panel{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto}
+.history-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--surface-2);border-radius:var(--radius-sm);border:1px solid var(--border);font-size:13px}
+.history-item-icon{font-size:18px}
+.history-item-info{flex:1}
+.history-item-action{font-weight:500}
+.history-item-time{font-size:11px;color:var(--text-muted);font-family:var(--font-mono)}
+
+/* ── SEARCH RESULTS META ── */
+.search-results-meta{font-size:13px;color:var(--text-secondary);margin-bottom:20px;display:flex;align-items:center;justify-content:space-between}
+.highlight{color:var(--gold);font-weight:500}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){.stats-grid{grid-template-columns:repeat(2,1fr)}.dashboard-grid{grid-template-columns:1fr}.sidebar-layout{grid-template-columns:1fr}.sidebar{position:static}.cart-layout{grid-template-columns:1fr}.product-detail-layout{grid-template-columns:1fr}}
+@media(max-width:768px){.hero-title{font-size:40px}.stats-grid{grid-template-columns:1fr 1fr}.nav-center{display:none}.products-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════
+  LOGIN SCREEN
+  ════════════════════════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-bg"></div>
+  <div class="login-grid"></div>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-icon">B</div>
+      <span class="login-logo-name">Biashara <span>Hub</span></span>
+    </div>
+    <div class="login-title">Welcome Back</div>
+    <div class="login-subtitle">Sign in to access your account</div>
+    <div class="login-tabs">
+      <div class="login-tab active" onclick="switchAuthTab('signin')">Sign In</div>
+      <div class="login-tab" onclick="switchAuthTab('signup')">Register</div>
+    </div>
+    <!-- SIGN IN FORM -->
+    <div id="signin-form" class="login-form">
+      <div>
+        <label>Email Address</label>
+        <input class="input" type="email" id="login-email" placeholder="you@example.com" value="shopper@biashara.co.ke"/>
+      </div>
+      <div>
+        <label>Password</label>
+        <input class="input" type="password" id="login-password" placeholder="••••••••" value="password123"/>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="handleSignIn()">Sign In →</button>
+      <div class="login-hint">
+        <strong>Demo Accounts:</strong><br/>
+        shopper@biashara.co.ke / password123 → Shopper<br/>
+        admin@biashara.co.ke / admin2024 → Admin
+      </div>
+    </div>
+    <!-- REGISTER FORM -->
+    <div id="signup-form" class="login-form hidden">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>First Name</label><input class="input" id="reg-fname" placeholder="Jane"/></div>
+        <div><label>Last Name</label><input class="input" id="reg-lname" placeholder="Wanjiku"/></div>
+      </div>
+      <div><label>Email Address</label><input class="input" type="email" id="reg-email" placeholder="you@example.com"/></div>
+      <div><label>Password</label><input class="input" type="password" id="reg-password" placeholder="Min 8 characters"/></div>
+      <div>
+        <label>Account Type</label>
+        <select class="input select" id="reg-role">
+          <option value="shopper">Shopper</option>
+          <option value="admin">Admin / Vendor</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="handleRegister()">Create Account →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modal-title">Modal</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer" id="modal-footer"></div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-brand" onclick="navigate('home')">
+    <div class="nav-logo">B</div>
+    <span class="nav-name">Biashara <span>Hub</span></span>
+  </div>
+  <div class="nav-center" id="nav-links">
+    <button class="nav-link active" data-page="home" onclick="navigate('home')">Home</button>
+    <button class="nav-link" data-page="shop" onclick="navigate('shop')">Shop</button>
+    <button class="nav-link" data-page="orders" onclick="navigate('orders')">Orders</button>
+    <button class="nav-link" data-page="wishlist" onclick="navigate('wishlist')">Wishlist</button>
+    <button class="nav-link admin-only hidden" data-page="dashboard" onclick="navigate('dashboard')">Dashboard</button>
+    <button class="nav-link admin-only hidden" data-page="inventory" onclick="navigate('inventory')">Inventory</button>
+    <button class="nav-link admin-only hidden" data-page="clients" onclick="navigate('clients')">Clients</button>
+    <button class="nav-link admin-only hidden" data-page="benchmark" onclick="navigate('benchmark')">⚡ DSA Bench</button>
+  </div>
+  <div class="nav-right">
+    <button class="nav-icon-btn" onclick="navigate('shop')" title="Search">🔍</button>
+    <button class="nav-icon-btn" onclick="navigate('wishlist')" title="Wishlist">
+      🤍<span class="nav-badge" id="wishlist-count">0</span>
+    </button>
+    <button class="nav-icon-btn" onclick="navigate('cart')" title="Cart">
+      🛒<span class="nav-badge" id="cart-count">0</span>
+    </button>
+    <div class="nav-user" id="nav-user-btn" onclick="showUserMenu()">
+      <div class="nav-user-avatar" id="user-avatar">?</div>
+      <span id="user-display-name">Guest</span>
+      <span id="nav-admin-badge" class="admin-badge hidden">Admin</span>
+    </div>
+  </div>
+</nav>
+
+<!-- APP -->
+<div id="app">
+
+  <!-- ══ HOME PAGE ══ -->
+  <div class="page active" id="page-home">
+    <div class="hero">
+      <div class="hero-bg"></div><div class="hero-grid"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">East Africa's Premier Marketplace</div>
+        <h1 class="hero-title">Where Commerce<br/>Meets <em>Excellence</em></h1>
+        <p class="hero-desc">Discover curated products from Africa's finest vendors. Powered by intelligent algorithms.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" onclick="navigate('shop')">Explore Store →</button>
+          <button class="btn btn-outline btn-lg" onclick="navigate('dashboard')">View Analytics</button>
+        </div>
+        <div class="hero-stats">
+          <div><div class="hero-stat-value" id="stat-products">0</div><div class="hero-stat-label">Products</div></div>
+          <div><div class="hero-stat-value" id="stat-orders">0</div><div class="hero-stat-label">Orders</div></div>
+          <div><div class="hero-stat-value" id="stat-vendors">0</div><div class="hero-stat-label">Vendors</div></div>
+          <div><div class="hero-stat-value" id="stat-rating">0</div><div class="hero-stat-label">Avg Rating</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="padding-top:48px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px">
+        <h2 style="font-family:var(--font-display);font-size:28px;font-weight:300">Browse <em style="color:var(--gold)">Categories</em></h2>
+        <button class="btn btn-ghost btn-sm" onclick="navigate('shop')">View All →</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:48px" id="categories-grid"></div>
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px">
+        <h2 style="font-family:var(--font-display);font-size:28px;font-weight:300">Featured <em style="color:var(--gold)">Products</em></h2>
+        <button class="btn btn-ghost btn-sm" onclick="navigate('shop')">View All →</button>
+      </div>
+      <div class="products-grid" id="featured-products"></div>
+      <div style="margin-top:48px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px">
+          <h2 style="font-family:var(--font-display);font-size:28px;font-weight:300">🤖 AI <em style="color:var(--gold)">Recommendations</em> <span style="font-size:13px;font-family:var(--font-mono);color:var(--text-muted)">(Collaborative Filtering)</span></h2>
+        </div>
+        <div class="products-grid" id="recommended-products"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SHOP PAGE ══ -->
+  <div class="page" id="page-shop">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">The <span>Shop</span></h1>
+        <p class="page-subtitle">Trie autocomplete · KMP search · BST price range · Merge Sort O(n log n)</p>
+      </div>
+      <div style="position:relative">
+        <div class="search-bar">
+          <div class="search-wrapper">
+            <input class="search-input" type="text" placeholder="Search products, brands, categories…" id="shop-search" oninput="handleShopSearch(this.value)" autocomplete="off"/>
+            <div class="search-suggestions hidden" id="search-suggestions"></div>
+          </div>
+          <button class="search-btn" onclick="executeSearch()">Search</button>
+        </div>
+      </div>
+      <div class="sidebar-layout">
+        <aside class="sidebar">
+          <div class="panel">
+            <div class="panel-header">
+              <span style="font-size:14px;font-weight:500">Filters</span>
+              <button class="btn btn-ghost btn-sm" onclick="clearFilters()">Clear All</button>
+            </div>
+            <div class="panel-body">
+              <div class="sidebar-section"><div class="sidebar-title">Category</div><div id="filter-categories" style="display:flex;flex-direction:column;gap:8px"></div></div>
+              <div class="divider"></div>
+              <div class="sidebar-section"><div class="sidebar-title">Price Range</div>
+                <input type="range" class="price-range" id="price-max" min="0" max="200000" step="500" value="200000" oninput="filterByPrice(this.value)"/>
+                <div class="price-display"><span>KES 0</span><span id="price-max-display">KES 200,000</span></div>
+              </div>
+              <div class="divider"></div>
+              <div class="sidebar-section"><div class="sidebar-title">Sort By</div>
+                <select class="input select" id="sort-select" onchange="sortProducts(this.value)">
+                  <option value="relevance">Relevance</option>
+                  <option value="price_asc">Price: Low → High</option>
+                  <option value="price_desc">Price: High → Low</option>
+                  <option value="rating">Highest Rated</option>
+                  <option value="newest">Newest First</option>
+                  <option value="popular">Most Popular</option>
+                </select>
+              </div>
+              <div class="divider"></div>
+              <div class="sidebar-section"><div class="sidebar-title">Rating</div><div id="rating-filters" style="display:flex;flex-direction:column;gap:6px"></div></div>
+              <div class="divider"></div>
+              <div class="sidebar-section"><div class="sidebar-title">Availability</div>
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:13px">
+                  <input type="checkbox" id="in-stock-only" onchange="applyFilters()" style="accent-color:var(--gold)"/> In Stock Only
+                </label>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <div>
+          <div class="filters-row" id="active-tags"></div>
+          <div class="search-results-meta"><span>Showing <span class="highlight" id="results-count">0</span> products</span></div>
+          <div class="products-grid" id="shop-products"></div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PRODUCT DETAIL PAGE ══ -->
+  <div class="page" id="page-product">
+    <div class="container">
+      <div style="padding:20px 0"><button class="btn btn-ghost btn-sm" id="product-back-btn">← Back</button></div>
+      <div class="product-detail-layout" id="product-detail-content"></div>
+      <div style="margin-top:48px">
+        <h2 style="font-family:var(--font-display);font-size:24px;font-weight:300;margin-bottom:24px">You May Also <em style="color:var(--gold)">Like</em> <span style="font-size:12px;font-family:var(--font-mono);color:var(--text-muted)">(BFS similarity graph)</span></h2>
+        <div class="products-grid" id="similar-products"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CART PAGE ══ -->
+  <div class="page" id="page-cart">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Your <span>Cart</span></h1>
+        <p class="page-subtitle">HashMap O(1) ops · Stack-based undo · Priority Queue checkout · Stock deducted on purchase</p>
+      </div>
+      <div id="cart-content"></div>
+    </div>
+  </div>
+
+  <!-- ══ ORDERS PAGE ══ -->
+  <div class="page" id="page-orders">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Order <span>History</span></h1>
+        <p class="page-subtitle">Doubly Linked List · State machine · Dijkstra delivery routing · Queue scheduling</p>
+      </div>
+      <div id="orders-queue-viz" style="margin-bottom:24px"></div>
+      <div class="orders-list" id="orders-list"></div>
+    </div>
+  </div>
+
+  <!-- ══ WISHLIST PAGE ══ -->
+  <div class="page" id="page-wishlist">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Wish <span>List</span></h1>
+        <p class="page-subtitle">Hash Set O(1) · Priority heap sort</p>
+      </div>
+      <div class="wishlist-grid" id="wishlist-grid"></div>
+    </div>
+  </div>
+
+  <!-- ══ SEARCH RESULTS PAGE ══ -->
+  <div class="page" id="page-search">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Search <span>Results</span></h1>
+        <p class="page-subtitle">Trie autocomplete · KMP match · Binary Search bounds</p>
+      </div>
+      <div class="search-results-meta">
+        <span id="search-meta-text">No results</span>
+        <span style="font-size:12px;font-family:var(--font-mono);color:var(--text-muted)" id="search-time"></span>
+      </div>
+      <div class="products-grid" id="search-results-grid"></div>
+    </div>
+  </div>
+
+  <!-- ══ DASHBOARD PAGE ══ -->
+  <div class="page" id="page-dashboard">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Analytics <span>Dashboard</span></h1>
+        <p class="page-subtitle">Segment Tree revenue · Sliding window trends · Max-Heap Top-K</p>
+      </div>
+      <div class="stats-grid" id="dashboard-stats"></div>
+      <div class="dashboard-grid">
+        <div class="chart-area">
+          <div class="chart-title">
+            <span>Revenue — Last 7 Days <span style="font-size:11px;font-family:var(--font-mono);color:var(--text-muted)">(Segment Tree)</span></span>
+            <span class="badge badge-success">▲ +12.4%</span>
+          </div>
+          <div class="mini-bar-chart" id="revenue-chart"></div>
+          <div style="display:flex" id="revenue-labels"></div>
+        </div>
+        <div class="chart-area">
+          <div class="chart-title">Top Products <span style="font-size:11px;font-family:var(--font-mono);color:var(--text-muted)">(Max-Heap)</span></div>
+          <div class="top-products-list" id="top-products-list"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header">
+          <span style="font-size:14px;font-weight:500">Recent Orders</span>
+          <button class="btn btn-ghost btn-sm" onclick="navigate('orders')">View All</button>
+        </div>
+        <div class="panel-body" style="padding:0">
+          <table class="recent-orders-table">
+            <thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
+            <tbody id="recent-orders-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ INVENTORY PAGE ══ -->
+  <div class="page" id="page-inventory">
+    <div class="container">
+      <div class="page-header">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%">
+          <div>
+            <h1 class="page-title">Inventory <span>Manager</span></h1>
+            <p class="page-subtitle">BST index · Min-Heap reorder alerts · Merge Sort · Stack undo history</p>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-outline" onclick="showInventoryHistory()">📜 Undo History</button>
+            <button class="btn btn-primary" onclick="showAddProductModal()">+ Add Product</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header">
+          <div style="display:flex;gap:8px">
+            <input class="input" style="width:260px" type="text" placeholder="Search inventory…" oninput="filterInventory(this.value)" id="inv-search"/>
+            <select class="input select" style="width:160px" onchange="sortInventory(this.value)">
+              <option value="name">Sort by Name</option>
+              <option value="stock_asc">Stock: Low→High</option>
+              <option value="stock_desc">Stock: High→Low</option>
+              <option value="price">Price</option>
+            </select>
+          </div>
+          <div style="display:flex;gap:8px">
+            <span class="badge badge-danger" id="low-stock-badge">0 Low Stock</span>
+            <span class="badge badge-gold" id="total-sku-badge">0 SKUs</span>
+          </div>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="inventory-table">
+            <thead><tr><th>SKU</th><th>Product</th><th>Category</th><th>Price (KES)</th><th>Stock</th><th>Status</th><th>Reorder At</th><th>Actions</th></tr></thead>
+            <tbody id="inventory-tbody"></tbody>
+          </table>
+        </div>
+        <div style="padding:16px 24px;border-top:1px solid var(--border)">
+          <div class="pagination" id="inv-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CLIENTS PAGE (ADMIN ONLY) ══ -->
+  <div class="page" id="page-clients">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Client <span>Management</span></h1>
+        <p class="page-subtitle">HashMap O(1) lookup · BST sorted index · Merge Sort by spend · DFS graph traversal</p>
+      </div>
+      <div class="panel" style="margin-bottom:24px">
+        <div class="panel-header">
+          <div style="display:flex;gap:8px">
+            <input class="input" style="width:260px" type="text" placeholder="Search clients…" id="client-search" oninput="filterClients(this.value)"/>
+            <select class="input select" style="width:160px" onchange="sortClients(this.value)" id="client-sort">
+              <option value="name">Sort by Name</option>
+              <option value="spend_desc">Spend: High→Low</option>
+              <option value="spend_asc">Spend: Low→High</option>
+              <option value="orders">Most Orders</option>
+              <option value="recent">Most Recent</option>
+            </select>
+          </div>
+          <span class="badge badge-gold" id="total-clients-badge">0 Clients</span>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="clients-table">
+            <thead><tr><th>User</th><th>Email</th><th>Role</th><th>Orders</th><th>Total Spend</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="clients-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ DSA BENCHMARK PAGE ══ -->
+  <div class="page" id="page-benchmark">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">DSA <span>Benchmark</span></h1>
+        <p class="page-subtitle">Big-O complexity analysis · Live timing · Compare algorithms on real data</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px">
+        <div class="panel">
+          <div class="panel-header"><span style="font-size:14px;font-weight:500">⚡ Run Benchmarks</span></div>
+          <div class="panel-body">
+            <div style="margin-bottom:16px">
+              <label>Dataset Size (n)</label>
+              <input class="input" type="range" id="bench-n" min="100" max="5000" step="100" value="1000" oninput="document.getElementById('bench-n-val').textContent=this.value"/>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-secondary);font-family:var(--font-mono);margin-top:6px"><span>100</span><span id="bench-n-val">1000</span><span>5000</span></div>
+            </div>
+            <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center" onclick="runBenchmarks()">▶ Run All Benchmarks</button>
+            <div id="bench-results" style="margin-top:20px"></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><span style="font-size:14px;font-weight:500">📊 Big-O Reference</span></div>
+          <div class="panel-body">
+            <table style="width:100%;border-collapse:collapse">
+              <thead><tr><th style="text-align:left;padding:8px;font-size:11px;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border)">Operation</th><th style="text-align:right;padding:8px;font-size:11px;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border)">Time</th><th style="text-align:right;padding:8px;font-size:11px;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border)">Space</th></tr></thead>
+              <tbody id="bigo-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header"><span style="font-size:14px;font-weight:500">🔄 Sort Comparisons</span></div>
+        <div class="panel-body">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" id="sort-comparison"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- #app -->
+
+<script>
+'use strict';
+/* ════════════════════════════════════════════════════════════════
+   BIASHARA HUB v2 — COMPLETE DSA IMPLEMENTATION
+   ════════════════════════════════════════════════════════════════
+
+   DATA STRUCTURES IMPLEMENTED:
+   1a. Trie          — O(L) autocomplete
+   1b. Min/Max-Heap  — O(log n) priority operations
+   1c. BST           — O(log n) ordered lookup, range queries
+   1d. HashMap       — O(1) avg hash table
+   1e. Doubly Linked List — O(1) insert/delete
+   1f. LRU Cache     — O(1) get/put (DLL + HashMap)
+   1g. Queue         — O(1) FIFO for order scheduling
+   1h. Stack         — O(1) LIFO for undo/history
+   1i. Graph         — BFS/DFS product similarity
+   1j. Segment Tree  — O(log n) range sum queries
+
+   ALGORITHMS IMPLEMENTED:
+   2a. Merge Sort     — O(n log n) stable sort
+   2b. Binary Search  — O(log n) lower/upper bound
+   2c. KMP            — O(n+m) string search
+   2d. Top-K Heap     — O(n log k) extraction
+   2e. Dijkstra       — O((V+E) log V) shortest path
+   2f. BFS/DFS        — Graph traversal
+   2g. Collaborative Filtering — cosine similarity
+   2h. Sliding Window — O(n) rolling max
+   ════════════════════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 1: DATA STRUCTURES
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── 1a. TRIE ─────────────────────────────────────────────────
+   Time:  insert O(L), search O(L), autocomplete O(L + k)
+   Space: O(n · L) where n=words, L=avg length
+   Use:   product name/tag autocomplete                          */
+class TrieNode {
+  constructor() {
+    this.children = {};   // char → TrieNode  — O(1) lookup per char
+    this.isEnd = false;   // marks complete word
+    this.data = null;     // payload stored at terminal nodes
+  }
+}
+class Trie {
+  constructor() { this.root = new TrieNode(); }
+
+  // Insert word + optional data payload — O(L)
+  insert(word, data = null) {
+    let node = this.root;
+    for (const ch of word.toLowerCase()) {
+      if (!node.children[ch]) node.children[ch] = new TrieNode();
+      node = node.children[ch];
+    }
+    node.isEnd = true;
+    node.data = data;
+  }
+
+  // DFS collect all completions under a node — O(k) where k = results
+  _collect(node, prefix, results, limit = 8) {
+    if (results.length >= limit) return;
+    if (node.isEnd) results.push({ word: prefix, data: node.data });
+    for (const [ch, child] of Object.entries(node.children)) {
+      this._collect(child, prefix + ch, results, limit);
+    }
+  }
+
+  // Autocomplete: traverse to prefix node, then collect — O(L + k)
+  autocomplete(prefix, limit = 8) {
+    let node = this.root;
+    for (const ch of prefix.toLowerCase()) {
+      if (!node.children[ch]) return [];
+      node = node.children[ch];
+    }
+    const results = [];
+    this._collect(node, prefix.toLowerCase(), results, limit);
+    return results;
+  }
+}
+
+/* ── 1b. MIN-HEAP ──────────────────────────────────────────────
+   Time:  push O(log n), pop O(log n), peek O(1), build O(n)
+   Space: O(n)
+   Use:   reorder alerts (lowest stock first), Dijkstra PQ       */
+class MinHeap {
+  constructor(compareFn = (a, b) => a - b) {
+    this.heap = [];
+    this.compare = compareFn;
+  }
+  size()  { return this.heap.length; }
+  peek()  { return this.heap[0] ?? null; }
+
+  // Add element and restore heap property upward — O(log n)
+  push(val) {
+    this.heap.push(val);
+    this._bubbleUp(this.heap.length - 1);
+  }
+
+  // Remove and return minimum; restore property downward — O(log n)
+  pop() {
+    if (!this.heap.length) return null;
+    const top = this.heap[0];
+    const last = this.heap.pop();
+    if (this.heap.length) { this.heap[0] = last; this._sinkDown(0); }
+    return top;
+  }
+
+  // Swim element up until heap property holds
+  _bubbleUp(i) {
+    while (i > 0) {
+      const parent = (i - 1) >> 1; // integer floor division
+      if (this.compare(this.heap[i], this.heap[parent]) < 0) {
+        [this.heap[i], this.heap[parent]] = [this.heap[parent], this.heap[i]];
+        i = parent;
+      } else break;
+    }
+  }
+
+  // Sink element down until heap property holds
+  _sinkDown(i) {
+    const n = this.heap.length;
+    while (true) {
+      let smallest = i;
+      const l = 2*i+1, r = 2*i+2;
+      if (l < n && this.compare(this.heap[l], this.heap[smallest]) < 0) smallest = l;
+      if (r < n && this.compare(this.heap[r], this.heap[smallest]) < 0) smallest = r;
+      if (smallest !== i) {
+        [this.heap[i], this.heap[smallest]] = [this.heap[smallest], this.heap[i]];
+        i = smallest;
+      } else break;
+    }
+  }
+
+  // Floyd's heapify — builds valid heap in O(n) (better than n insertions = O(n log n))
+  static fromArray(arr, compareFn) {
+    const h = new MinHeap(compareFn);
+    h.heap = [...arr];
+    // Start from last non-leaf, sink each — O(n) total via geometric series proof
+    for (let i = (arr.length >> 1) - 1; i >= 0; i--) h._sinkDown(i);
+    return h;
+  }
+}
+
+/* MAX-HEAP via negated comparator — O(log n) push/pop
+   Use: Top-K bestsellers, price-desc sort                       */
+class MaxHeap extends MinHeap {
+  constructor(compareFn = (a, b) => b - a) { super(compareFn); }
+}
+
+/* ── 1c. BST — Binary Search Tree ─────────────────────────────
+   Time:  insert/search O(h) avg O(log n), range O(log n + k)
+   Space: O(n)
+   Use:   price-range filtering, category index, sorted access   */
+class BSTNode {
+  constructor(key, value) {
+    this.key = key; this.value = value;
+    this.left = this.right = null;
+  }
+}
+class BST {
+  constructor() { this.root = null; }
+
+  // Recursive insert — O(h)
+  insert(key, value) { this.root = this._ins(this.root, key, value); }
+  _ins(node, key, value) {
+    if (!node) return new BSTNode(key, value);
+    if (key < node.key) node.left  = this._ins(node.left,  key, value);
+    else if (key > node.key) node.right = this._ins(node.right, key, value);
+    else node.value = value; // update on duplicate key
+    return node;
+  }
+
+  // Iterative search — O(h)
+  search(key) {
+    let node = this.root;
+    while (node) {
+      if (key === node.key) return node.value;
+      node = key < node.key ? node.left : node.right;
+    }
+    return null;
+  }
+
+  // In-order traversal → sorted output — O(n)
+  inorder(node = this.root, result = []) {
+    if (!node) return result;
+    this.inorder(node.left, result);
+    result.push({ key: node.key, value: node.value });
+    this.inorder(node.right, result);
+    return result;
+  }
+
+  // Range query: all entries with key in [lo, hi] — O(log n + k)
+  range(lo, hi, node = this.root, result = []) {
+    if (!node) return result;
+    if (node.key > lo) this.range(lo, hi, node.left,  result);
+    if (node.key >= lo && node.key <= hi) result.push(node.value);
+    if (node.key < hi) this.range(lo, hi, node.right, result);
+    return result;
+  }
+}
+
+/* ── 1d. HASH MAP — chaining with djb2 ────────────────────────
+   Time:  get/set/delete O(1) avg, O(n) worst (all in one bucket)
+   Space: O(n); resizes at load factor 0.75
+   Use:   product DB, user store, cart, coupons, sessions        */
+class HashMap {
+  constructor(size = 128) {
+    this.size = size;
+    this.buckets = Array.from({ length: size }, () => []);
+    this.count = 0;
+  }
+
+  // djb2 hash: fast, good distribution
+  _hash(key) {
+    let h = 5381;
+    for (let i = 0; i < key.length; i++)
+      h = ((h << 5) + h) + key.charCodeAt(i);
+    return (h >>> 0) % this.size; // unsigned 32-bit mod
+  }
+
+  // set O(1) avg — checks for existing key before appending
+  set(key, value) {
+    const idx = this._hash(String(key));
+    const bucket = this.buckets[idx];
+    const ex = bucket.find(([k]) => k === String(key));
+    if (ex) { ex[1] = value; return; }
+    bucket.push([String(key), value]);
+    this.count++;
+    if (this.count / this.size > 0.75) this._resize(); // rehash at 75% load
+  }
+
+  // get O(1) avg
+  get(key) {
+    const idx = this._hash(String(key));
+    const p = this.buckets[idx].find(([k]) => k === String(key));
+    return p ? p[1] : undefined;
+  }
+
+  has(key) { return this.get(key) !== undefined; }
+
+  // delete O(1) avg
+  delete(key) {
+    const idx = this._hash(String(key));
+    const bucket = this.buckets[idx];
+    const i = bucket.findIndex(([k]) => k === String(key));
+    if (i !== -1) { bucket.splice(i, 1); this.count--; return true; }
+    return false;
+  }
+
+  values()  { return this.buckets.flat().map(([,v]) => v); }
+  keys()    { return this.buckets.flat().map(([k]) => k); }
+  entries() { return this.buckets.flat(); }
+
+  // Double capacity and rehash all entries — O(n)
+  _resize() {
+    const old = this.buckets.flat();
+    this.size *= 2;
+    this.buckets = Array.from({ length: this.size }, () => []);
+    this.count = 0;
+    old.forEach(([k, v]) => this.set(k, v));
+  }
+}
+
+/* ── 1e. DOUBLY LINKED LIST ────────────────────────────────────
+   Time:  append/prepend O(1), remove O(1) given node, toArray O(n)
+   Space: O(n)
+   Use:   order history, LRU list                                */
+class DLLNode {
+  constructor(data) { this.data = data; this.prev = this.next = null; }
+}
+class DoublyLinkedList {
+  constructor() { this.head = this.tail = null; this.length = 0; }
+
+  append(data) {
+    const node = new DLLNode(data);
+    if (!this.tail) { this.head = this.tail = node; }
+    else { node.prev = this.tail; this.tail.next = node; this.tail = node; }
+    this.length++;
+    return node;
+  }
+
+  prepend(data) {
+    const node = new DLLNode(data);
+    if (!this.head) { this.head = this.tail = node; }
+    else { node.next = this.head; this.head.prev = node; this.head = node; }
+    this.length++;
+    return node;
+  }
+
+  // O(1) removal given a node reference (unlike array O(n))
+  remove(node) {
+    if (node.prev) node.prev.next = node.next; else this.head = node.next;
+    if (node.next) node.next.prev = node.prev; else this.tail = node.prev;
+    this.length--;
+  }
+
+  toArray() {
+    const arr = []; let cur = this.head;
+    while (cur) { arr.push(cur.data); cur = cur.next; }
+    return arr;
+  }
+}
+
+/* ── 1f. LRU CACHE (HashMap + DLL) ────────────────────────────
+   Time:  get O(1), put O(1) — constant time eviction
+   Space: O(capacity)
+   Use:   product detail page caching (30 most-recent products)  */
+class LRUCache {
+  constructor(capacity = 30) {
+    this.capacity = capacity;
+    this.map = new HashMap(capacity * 2);
+    this.list = new DoublyLinkedList();
+    this.nodeMap = {}; // key → DLL node reference for O(1) removal
+  }
+  get(key) {
+    if (!this.map.has(key)) return null;
+    const node = this.nodeMap[key];
+    // Move to front = most recently used
+    this.list.remove(node);
+    this.list.prepend(node.data);
+    this.nodeMap[key] = this.list.head;
+    return node.data.value;
+  }
+  put(key, value) {
+    if (this.map.has(key)) {
+      this.list.remove(this.nodeMap[key]); // refresh position
+    } else if (this.list.length >= this.capacity) {
+      // Evict LRU: the tail node is least recently used
+      const tail = this.list.tail;
+      this.list.remove(tail);
+      this.map.delete(tail.data.key);
+      delete this.nodeMap[tail.data.key];
+    }
+    this.list.prepend({ key, value });
+    this.nodeMap[key] = this.list.head;
+    this.map.set(key, true);
+  }
+}
+
+/* ── 1g. QUEUE — FIFO using array with front index ─────────────
+   Time:  enqueue O(1), dequeue O(1) amortised, isEmpty O(1)
+   Space: O(n)
+   Use:   BFS traversal, order processing scheduling             */
+class Queue {
+  constructor() { this.items = []; this.front = 0; }
+  enqueue(item) { this.items.push(item); }
+  dequeue() {
+    if (this.isEmpty()) return null;
+    return this.items[this.front++];
+  }
+  peek()    { return this.isEmpty() ? null : this.items[this.front]; }
+  isEmpty() { return this.front >= this.items.length; }
+  size()    { return this.items.length - this.front; }
+  toArray() { return this.items.slice(this.front); }
+  // Compact when front > 50% — avoids unbounded memory growth
+  compact() {
+    if (this.front > this.items.length / 2) {
+      this.items = this.items.slice(this.front);
+      this.front = 0;
+    }
+  }
+}
+
+/* ── 1h. STACK — LIFO using array ──────────────────────────────
+   Time:  push O(1), pop O(1), peek O(1)
+   Space: O(n)
+   Use:   cart undo history, inventory action history,
+          DFS graph traversal, backtracking                      */
+class Stack {
+  constructor() { this.items = []; }
+  push(item)  { this.items.push(item); }
+  pop()       { return this.items.pop() ?? null; }
+  peek()      { return this.items[this.items.length - 1] ?? null; }
+  isEmpty()   { return this.items.length === 0; }
+  size()      { return this.items.length; }
+  toArray()   { return [...this.items].reverse(); } // top of stack first
+}
+
+/* ── 1i. GRAPH — adjacency list ────────────────────────────────
+   Time:  addEdge O(1), BFS O(V+E), DFS O(V+E)
+   Space: O(V + E)
+   Use:   product similarity, "You may also like"                */
+class Graph {
+  constructor() { this.adj = new HashMap(256); }
+
+  // Add undirected weighted edge
+  addEdge(u, v, weight = 1) {
+    if (!this.adj.has(u)) this.adj.set(u, []);
+    if (!this.adj.has(v)) this.adj.set(v, []);
+    this.adj.get(u).push({ node: v, weight });
+    this.adj.get(v).push({ node: u, weight });
+  }
+
+  // BFS — level-order traversal — O(V+E)
+  // Returns all nodes reachable within 'depth' hops from source
+  bfs(source, depth = 2) {
+    const visited = new Set([source]);
+    const q = new Queue();
+    const result = [];
+    q.enqueue({ id: source, d: 0 });
+    while (!q.isEmpty()) {
+      const { id, d } = q.dequeue();
+      if (d > 0) result.push(id);
+      if (d >= depth) continue;
+      const neighbors = this.adj.get(id) || [];
+      for (const { node } of neighbors) {
+        if (!visited.has(node)) {
+          visited.add(node);
+          q.enqueue({ id: node, d: d + 1 });
+        }
+      }
+    }
+    return result;
+  }
+
+  // DFS — recursive depth-first traversal — O(V+E)
+  // Finds all connected products reachable from source
+  dfs(source, visited = new Set(), result = []) {
+    visited.add(source);
+    const neighbors = this.adj.get(source) || [];
+    for (const { node } of neighbors) {
+      if (!visited.has(node)) {
+        result.push(node);
+        this.dfs(node, visited, result);
+      }
+    }
+    return result;
+  }
+}
+
+/* ── 1j. SEGMENT TREE — range sum ──────────────────────────────
+   Time:  build O(n), query O(log n), update O(log n)
+   Space: O(4n) = O(n)
+   Use:   revenue range queries on dashboard                     */
+class SegmentTree {
+  constructor(arr) {
+    this.n = arr.length;
+    this.tree = new Array(4 * this.n).fill(0);
+    if (this.n) this._build(arr, 0, 0, this.n - 1);
+  }
+  // Build from leaves up — O(n)
+  _build(arr, node, start, end) {
+    if (start === end) { this.tree[node] = arr[start]; return; }
+    const mid = (start + end) >> 1;
+    this._build(arr, 2*node+1, start, mid);
+    this._build(arr, 2*node+2, mid+1, end);
+    this.tree[node] = this.tree[2*node+1] + this.tree[2*node+2]; // merge
+  }
+  // Range sum query [l,r] — O(log n) via recursive split
+  query(l, r, node=0, start=0, end=this.n-1) {
+    if (r < start || end < l) return 0;           // out of range
+    if (l <= start && end <= r) return this.tree[node]; // fully covered
+    const mid = (start + end) >> 1;
+    return this.query(l,r,2*node+1,start,mid) + this.query(l,r,2*node+2,mid+1,end);
+  }
+  // Point update — O(log n)
+  update(idx, val, node=0, start=0, end=this.n-1) {
+    if (start === end) { this.tree[node] = val; return; }
+    const mid = (start + end) >> 1;
+    if (idx <= mid) this.update(idx, val, 2*node+1, start, mid);
+    else            this.update(idx, val, 2*node+2, mid+1, end);
+    this.tree[node] = this.tree[2*node+1] + this.tree[2*node+2];
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 2: ALGORITHMS
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── 2a. MERGE SORT — O(n log n) stable sort ──────────────────
+   Stable: equal elements maintain relative order (important for
+   multi-key sort e.g., sort by price then rating)
+   Use:   product sorting, inventory table, client table         */
+function mergeSort(arr, compareFn = (a, b) => a - b) {
+  if (arr.length <= 1) return arr;
+  const mid = arr.length >> 1;
+  const left  = mergeSort(arr.slice(0, mid), compareFn);
+  const right = mergeSort(arr.slice(mid),    compareFn);
+  // Merge two sorted halves — O(n)
+  const merged = []; let i = 0, j = 0;
+  while (i < left.length && j < right.length) {
+    merged.push(compareFn(left[i], right[j]) <= 0 ? left[i++] : right[j++]);
+  }
+  return merged.concat(left.slice(i), right.slice(j));
+}
+
+/* ── 2b. BINARY SEARCH + LOWER BOUND — O(log n) ───────────────
+   Use:   price range filter (find first product in price range) */
+function binarySearch(arr, target, key = x => x) {
+  let lo = 0, hi = arr.length - 1;
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1;
+    const v = key(arr[mid]);
+    if (v === target) return mid;
+    else if (v < target) lo = mid + 1;
+    else hi = mid - 1;
+  }
+  return -1;
+}
+// First index where key(arr[i]) >= target — O(log n)
+function lowerBound(arr, target, key = x => x) {
+  let lo = 0, hi = arr.length;
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1;
+    if (key(arr[mid]) < target) lo = mid + 1; else hi = mid;
+  }
+  return lo;
+}
+
+/* ── 2c. KMP STRING SEARCH — O(n + m) ─────────────────────────
+   KMP avoids redundant comparisons via failure function
+   Naive: O(n·m) worst case; KMP: O(n+m) always
+   Use:   full-text product search in names, descriptions, tags  */
+function kmpSearch(text, pattern) {
+  if (!pattern) return [];
+  const n = text.length, m = pattern.length;
+  // Build LPS (Longest Proper Prefix that is also Suffix) — O(m)
+  const lps = new Array(m).fill(0);
+  let len = 0, i = 1;
+  while (i < m) {
+    if (pattern[i] === pattern[len]) { lps[i++] = ++len; }
+    else if (len) { len = lps[len-1]; }
+    else { lps[i++] = 0; }
+  }
+  // Search phase — O(n): each character visited at most twice
+  const matches = [];
+  i = 0; let j = 0;
+  while (i < n) {
+    if (text[i] === pattern[j]) { i++; j++; }
+    if (j === m) { matches.push(i - j); j = lps[j-1]; }
+    else if (i < n && text[i] !== pattern[j]) {
+      if (j) j = lps[j-1]; else i++;
+    }
+  }
+  return matches;
+}
+
+/* ── 2d. TOP-K WITH MIN-HEAP — O(n log k) ─────────────────────
+   Maintain a min-heap of size k.
+   For each element: if score > heap.peek, replace peek.
+   Result: heap contains top-k by score. Cheaper than full sort O(n log n).
+   Use:   top-5 bestsellers on dashboard                        */
+function topK(arr, k, scoreFn = x => x) {
+  const heap = new MinHeap((a, b) => scoreFn(a) - scoreFn(b));
+  for (const item of arr) {
+    heap.push(item);
+    if (heap.size() > k) heap.pop(); // eject the current minimum
+  }
+  const result = [];
+  while (heap.size()) result.unshift(heap.pop());
+  return result.sort((a,b) => scoreFn(b) - scoreFn(a));
+}
+
+/* ── 2e. DIJKSTRA — O((V+E) log V) shortest path ──────────────
+   Uses a min-heap as priority queue.
+   Greedy: always expand the closest unvisited node.
+   Use:   optimal delivery route from warehouse to customer zone */
+function dijkstra(graph, source) {
+  const dist = {};
+  const visited = new Set();
+  const pq = new MinHeap((a, b) => a.dist - b.dist);
+  for (const node of graph.keys()) dist[node] = Infinity;
+  dist[source] = 0;
+  pq.push({ node: source, dist: 0 });
+  while (pq.size()) {
+    const { node, dist: d } = pq.pop();
+    if (visited.has(node)) continue; // skip stale entries
+    visited.add(node);
+    for (const { node: nb, weight } of (graph.get(node) || [])) {
+      const newDist = d + weight;
+      if (newDist < (dist[nb] ?? Infinity)) {
+        dist[nb] = newDist;
+        pq.push({ node: nb, dist: newDist });
+      }
+    }
+  }
+  return dist;
+}
+
+/* ── 2f. COSINE SIMILARITY — O(d) per pair, d=dimensions ──────
+   Measures angle between user-preference vectors.
+   Score 1 = identical, 0 = orthogonal (no overlap)
+   Use:   collaborative filtering product recommendations        */
+function cosineSimilarity(vecA, vecB) {
+  let dot = 0, normA = 0, normB = 0;
+  const keys = new Set([...Object.keys(vecA), ...Object.keys(vecB)]);
+  for (const k of keys) {
+    const a = vecA[k] || 0, b = vecB[k] || 0;
+    dot += a * b; normA += a*a; normB += b*b;
+  }
+  return normA && normB ? dot / (Math.sqrt(normA) * Math.sqrt(normB)) : 0;
+}
+
+/* ── 2g. SLIDING WINDOW MAX — O(n) with deque ─────────────────
+   Deque stores indices; front always holds index of current max.
+   Use:   rolling max revenue for dashboard trend line           */
+function slidingWindowMax(arr, k) {
+  const deque = []; // stores indices into arr
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    while (deque.length && deque[0] < i - k + 1) deque.shift();    // remove expired
+    while (deque.length && arr[deque[deque.length-1]] <= arr[i]) deque.pop(); // remove smaller
+    deque.push(i);
+    if (i >= k - 1) result.push(arr[deque[0]]);
+  }
+  return result;
+}
+
+/* ── 2h. QUICK SORT — O(n log n) avg, O(n²) worst ─────────────
+   In-place, cache-friendly. Used for comparison benchmarks.    */
+function quickSort(arr, lo = 0, hi = arr.length - 1) {
+  if (lo >= hi) return arr;
+  const pivot = arr[hi]; let i = lo - 1;
+  for (let j = lo; j < hi; j++) {
+    if (arr[j] <= pivot) { i++; [arr[i], arr[j]] = [arr[j], arr[i]]; }
+  }
+  [arr[i+1], arr[hi]] = [arr[hi], arr[i+1]];
+  const p = i + 1;
+  quickSort(arr, lo, p - 1);
+  quickSort(arr, p + 1, hi);
+  return arr;
+}
+
+/* ── 2i. HEAP SORT — O(n log n), O(1) extra space ─────────────
+   Used for comparison benchmarks.                              */
+function heapSort(arr) {
+  const n = arr.length;
+  // Build max-heap in-place — O(n)
+  for (let i = (n >> 1) - 1; i >= 0; i--) heapify(arr, n, i);
+  // Extract max repeatedly — O(n log n)
+  for (let i = n - 1; i > 0; i--) {
+    [arr[0], arr[i]] = [arr[i], arr[0]];
+    heapify(arr, i, 0);
+  }
+  return arr;
+}
+function heapify(arr, n, i) {
+  let largest = i, l = 2*i+1, r = 2*i+2;
+  if (l < n && arr[l] > arr[largest]) largest = l;
+  if (r < n && arr[r] > arr[largest]) largest = r;
+  if (largest !== i) { [arr[i], arr[largest]] = [arr[largest], arr[i]]; heapify(arr, n, largest); }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 3: USER AUTHENTICATION (HashMap-backed)
+   ════════════════════════════════════════════════════════════════ */
+
+// userDB: HashMap<email, {name, email, password, role, joinDate, totalSpend, orders}>
+// All auth operations O(1) average via HashMap
+const userDB = new HashMap(64);
+
+// Pre-seed demo accounts
+userDB.set('shopper@biashara.co.ke', {
+  name:'Jane Wanjiku', email:'shopper@biashara.co.ke',
+  password:'password123', role:'shopper',
+  joinDate:'2024-01-15', totalSpend:0, orderCount:0, active:true
+});
+userDB.set('admin@biashara.co.ke', {
+  name:'David Kamau', email:'admin@biashara.co.ke',
+  password:'admin2024', role:'admin',
+  joinDate:'2023-08-01', totalSpend:0, orderCount:0, active:true
+});
+userDB.set('alice@example.com', {
+  name:'Alice Ochieng', email:'alice@example.com',
+  password:'pass1234', role:'shopper',
+  joinDate:'2024-03-22', totalSpend:45600, orderCount:7, active:true
+});
+userDB.set('bob@example.com', {
+  name:'Bob Mwangi', email:'bob@example.com',
+  password:'pass1234', role:'shopper',
+  joinDate:'2024-05-10', totalSpend:128000, orderCount:14, active:true
+});
+userDB.set('carol@example.com', {
+  name:'Carol Njeri', email:'carol@example.com',
+  password:'pass1234', role:'shopper',
+  joinDate:'2024-06-30', totalSpend:23400, orderCount:3, active:false
+});
+
+// Current session — null when not logged in
+let currentUser = null;
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 4: DATA STORE
+   ════════════════════════════════════════════════════════════════ */
+
+// ── Product catalog: HashMap<id, product> — O(1) lookup
+const productDB = new HashMap(512);
+
+// ── Trie for autocomplete — O(L+k) suggestions
+const searchTrie = new Trie();
+
+// ── Category BST — O(log n) range queries
+const categoryBST = new BST();
+
+// ── Wishlist: native Set for O(1) add/has/delete
+const wishlistSet = new Set();
+
+// ── Cart: HashMap<productId, qty> — O(1) operations
+const cartMap = new HashMap(64);
+
+// ── Cart undo STACK — O(1) push/pop, O(1) undo last action
+// Each frame: { action:'add'|'remove'|'qty', id, prevQty, newQty }
+const cartUndoStack = new Stack();
+
+// ── Inventory action history STACK — O(1) undo any change
+// Each frame: { action, productId, before, after, timestamp }
+const inventoryStack = new Stack();
+
+// ── Order history: Doubly Linked List — O(1) append/remove
+const orderHistory = new DoublyLinkedList();
+
+// ── Order processing QUEUE — FIFO scheduling of pending orders
+const orderQueue = new Queue();
+
+// ── LRU Cache for product detail — O(1) get/put
+const detailCache = new LRUCache(30);
+
+// ── Similarity graph — BFS/DFS "you may also like"
+const similarityGraph = new Graph();
+
+// ── Segment Tree for revenue — O(log n) range queries
+let revenueSegTree = null;
+const revenueData = [48200,61400,53700,72800,88900,64300,95600];
+
+// ── Coupon map: HashMap<code, {discount, label}> — O(1) lookup
+const coupons = new HashMap(16);
+coupons.set('BIASHARA10', { discount:0.10, label:'BIASHARA10 — 10% off' });
+coupons.set('SAVE20',     { discount:0.20, label:'SAVE20 — 20% off' });
+coupons.set('VIPGOLD',    { discount:0.25, label:'VIPGOLD — 25% off' });
+
+// ── App state
+const state = {
+  currentPage:'home',
+  currentProduct:null,
+  shopFilters:{ category:null, maxPrice:200000, minRating:0, inStockOnly:false, query:'' },
+  shopSort:'relevance',
+  shopPage:1, itemsPerPage:12,
+  invPage:1,  invItemsPerPage:10,
+  invFilter:'', invSort:'name',
+  clientFilter:'', clientSort:'name',
+  coupon:null,
+};
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 5: SEED DATA
+   ════════════════════════════════════════════════════════════════ */
+const CATEGORIES = [
+  { id:'electronics', name:'Electronics',    icon:'💻', color:'#5b9bd5' },
+  { id:'fashion',     name:'Fashion',         icon:'👗', color:'#c97bb5' },
+  { id:'home',        name:'Home & Living',   icon:'🏠', color:'#7dc97b' },
+  { id:'beauty',      name:'Beauty',          icon:'💄', color:'#c9a84c' },
+  { id:'food',        name:'Food & Beverage', icon:'🧃', color:'#b85c38' },
+  { id:'sports',      name:'Sports',          icon:'⚽', color:'#5bdac9' },
+];
+
+const PRODUCTS_SEED = [
+  { id:'p001',name:'Samsung Galaxy A54',    cat:'electronics',price:55000,orig:62000, rating:4.7,reviews:412, stock:34,reorder:10,icon:'📱',vendor:'TechZone KE',   desc:'6.4" Super AMOLED, 50MP camera, 5000mAh.',tags:['smartphone','samsung','android'],pop:920},
+  { id:'p002',name:'Sony WH-1000XM5',       cat:'electronics',price:38500,orig:45000, rating:4.9,reviews:683, stock:8, reorder:5, icon:'🎧',vendor:'AudioWorld',    desc:'Industry-leading noise cancelling, 30hr battery.',tags:['headphones','sony','audio'],pop:870},
+  { id:'p003',name:'MacBook Air M2',         cat:'electronics',price:148000,orig:155000,rating:4.8,reviews:291,stock:12,reorder:5, icon:'💻',vendor:'AppleZone',     desc:'M2 chip, Liquid Retina display, all-day battery.',tags:['laptop','apple','macbook'],pop:810},
+  { id:'p004',name:'Ankara Print Maxi Dress',cat:'fashion',   price:4800, orig:6500,  rating:4.5,reviews:156, stock:45,reorder:15,icon:'👗',vendor:'Nairobi Styles', desc:'Vibrant hand-dyed Ankara print, flowing silhouette.',tags:['dress','ankara','fashion'],pop:640},
+  { id:'p005',name:'Leather Oxford Shoes',  cat:'fashion',    price:8500, orig:10000, rating:4.6,reviews:89,  stock:23,reorder:8, icon:'👞',vendor:'ShoeHub KE',    desc:'Full-grain leather, Goodyear welt construction.',tags:['shoes','leather','formal'],pop:580},
+  { id:'p006',name:'African Woven Basket Set',cat:'home',     price:3200, orig:3800,  rating:4.8,reviews:234, stock:67,reorder:20,icon:'🧺',vendor:'Craft House',   desc:'Set of 3 hand-woven sisal baskets, fair trade.',tags:['basket','home','decor'],pop:720},
+  { id:'p007',name:'Espresso Machine DeLonghi',cat:'home',    price:22000,orig:26000, rating:4.7,reviews:178, stock:15,reorder:5, icon:'☕',vendor:'KitchenPro',    desc:'15-bar pump, burr grinder, milk frother.',tags:['coffee','espresso','kitchen'],pop:690},
+  { id:'p008',name:'Argan Oil Hair Serum',  cat:'beauty',     price:1850, orig:2200,  rating:4.6,reviews:521, stock:120,reorder:30,icon:'💆',vendor:'NaturalGlow',  desc:'100% Moroccan argan oil, reduces frizz.',tags:['hair','beauty','argan'],pop:810},
+  { id:'p009',name:'Vitamin C Serum 20%',   cat:'beauty',     price:2400, orig:2900,  rating:4.5,reviews:397, stock:88,reorder:25,icon:'✨',vendor:'DermaCare KE',  desc:'Clinical 20% L-ascorbic acid, brightens skin.',tags:['skincare','vitamin-c','serum'],pop:760},
+  { id:'p010',name:'Kenyan AA Coffee Beans',cat:'food',        price:1200, orig:1400,  rating:4.9,reviews:1024,stock:200,reorder:50,icon:'☕',vendor:'Mount Kenya Coffee',desc:'Single-origin AA, Nyeri highlands, medium roast.',tags:['coffee','kenyan','beans'],pop:950},
+  { id:'p011',name:'Macadamia Honey 500g',  cat:'food',        price:850,  orig:950,   rating:4.8,reviews:432, stock:150,reorder:40,icon:'🍯',vendor:'Honey Heaven',  desc:'Raw unfiltered macadamia blossom honey.',tags:['honey','organic','food'],pop:820},
+  { id:'p012',name:'Football (FIFA Approved)',cat:'sports',    price:4500, orig:5200,  rating:4.7,reviews:265, stock:42,reorder:15,icon:'⚽',vendor:'SportsPro KE',  desc:'FIFA Quality Pro certified match ball.',tags:['football','sports','ball'],pop:700},
+  { id:'p013',name:'Yoga Mat Premium 6mm',  cat:'sports',      price:2800, orig:3500,  rating:4.6,reviews:312, stock:55,reorder:15,icon:'🧘',vendor:'FitLife KE',    desc:'Eco TPE, non-slip, alignment markers.',tags:['yoga','fitness','mat'],pop:650},
+  { id:'p014',name:'iPad Pro 11" M4',       cat:'electronics', price:112000,orig:120000,rating:4.9,reviews:156,stock:7, reorder:3, icon:'📱',vendor:'AppleZone',     desc:'Ultra-thin, M4 chip, ProMotion display.',tags:['tablet','apple','ipad'],pop:790},
+  { id:'p015',name:'Maasai Beaded Necklace',cat:'fashion',     price:2100, orig:2500,  rating:4.9,reviews:88,  stock:30,reorder:10,icon:'📿',vendor:'Maasai Craft',  desc:'Authentic handcrafted Maasai beadwork by Samburu artisans.',tags:['jewelry','maasai','handmade'],pop:610},
+  { id:'p016',name:'Bamboo Cutting Board Set',cat:'home',      price:1600, orig:2000,  rating:4.5,reviews:198, stock:75,reorder:20,icon:'🍽️',vendor:'KitchenPro',   desc:'4 organic bamboo boards with juice grooves.',tags:['kitchen','bamboo','cookware'],pop:540},
+  { id:'p017',name:'Running Shoes Nike Zoom',cat:'sports',     price:12500,orig:15000, rating:4.7,reviews:445, stock:28,reorder:10,icon:'👟',vendor:'SportsPro KE',  desc:'Carbon-fiber plate, ZoomX foam, race performance.',tags:['shoes','running','nike'],pop:880},
+  { id:'p018',name:'Avocado Face Cream',    cat:'beauty',      price:1100, orig:1400,  rating:4.4,reviews:267, stock:95,reorder:30,icon:'🥑',vendor:'NaturalGlow',   desc:'Kenyan avocado oil and shea butter, vegan.',tags:['skincare','avocado','moisturizer'],pop:620},
+  { id:'p019',name:'Baobab Superfood Powder',cat:'food',       price:950,  orig:1100,  rating:4.7,reviews:189, stock:110,reorder:35,icon:'🌿',vendor:'AfriNature',   desc:'Certified organic, high vitamin C and antioxidants.',tags:['superfood','baobab','organic'],pop:680},
+  { id:'p020',name:'Sony 4K OLED TV 55"',  cat:'electronics',  price:185000,orig:210000,rating:4.8,reviews:78,stock:5,  reorder:2, icon:'📺',vendor:'TechZone KE',   desc:'XR Processor, 120Hz, HDMI 2.1, Acoustic Surface.',tags:['tv','sony','4k','oled'],pop:840},
+  { id:'p021',name:'Standing Desk Bamboo', cat:'home',         price:28000,orig:35000, rating:4.6,reviews:134, stock:18,reorder:5, icon:'🪑',vendor:'OfficePro KE', desc:'Height-adjustable bamboo desktop, dual motor.',tags:['desk','office','bamboo'],pop:660},
+  { id:'p022',name:'Wireless Earbuds Pro', cat:'electronics',  price:9800, orig:12500, rating:4.5,reviews:389, stock:55,reorder:15,icon:'🎵',vendor:'AudioWorld',    desc:'Active noise cancelling, 8hr + 32hr case battery.',tags:['earbuds','wireless','audio'],pop:810},
+];
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 6: INITIALISATION
+   ════════════════════════════════════════════════════════════════ */
+function initDataStructures() {
+  // Populate HashMap — O(n)
+  for (const p of PRODUCTS_SEED) {
+    // Store with normalised field names
+    const product = { ...p, category: p.cat, originalPrice: p.orig, reorderAt: p.reorder, popularity: p.pop };
+    productDB.set(p.id, product);
+    // Trie insertion for name and each tag — O(L) each
+    searchTrie.insert(p.name, { id:p.id, name:p.name, icon:p.icon });
+    for (const tag of p.tags) searchTrie.insert(tag, { id:p.id, name:p.name, icon:p.icon });
+  }
+
+  // Category BST — O(n log n) total insertions
+  for (const c of CATEGORIES) categoryBST.insert(c.name, c);
+
+  // Product similarity graph — O(n²) for dense connections
+  // We limit to same-category + shared tags for tractable construction
+  const products = productDB.values();
+  for (let i = 0; i < products.length; i++) {
+    for (let j = i+1; j < products.length; j++) {
+      const a = products[i], b = products[j];
+      if (a.category === b.category) {
+        const shared = a.tags.filter(t => b.tags.includes(t)).length;
+        const union  = new Set([...a.tags, ...b.tags]).size;
+        const weight = 1 - shared/union + 0.01;
+        similarityGraph.addEdge(a.id, b.id, weight);
+      }
+    }
+  }
+
+  // Segment Tree — O(n) build
+  revenueSegTree = new SegmentTree(revenueData);
+
+  // Seed order history (DLL) and queue
+  const seededOrders = [
+    { id:'ORD-2024-001',items:[{id:'p001',qty:1},{id:'p008',qty:2}],status:'delivered',date:'2024-11-10',total:58700,customer:'Jane Wanjiku',email:'shopper@biashara.co.ke'},
+    { id:'ORD-2024-002',items:[{id:'p010',qty:3},{id:'p011',qty:1}],status:'shipped',  date:'2024-12-01',total:4450, customer:'Alice Ochieng',email:'alice@example.com'},
+    { id:'ORD-2024-003',items:[{id:'p003',qty:1}],                  status:'processing',date:'2024-12-15',total:148000,customer:'Bob Mwangi',email:'bob@example.com'},
+    { id:'ORD-2024-004',items:[{id:'p017',qty:1},{id:'p012',qty:1}],status:'pending',  date:'2024-12-20',total:17000,customer:'Carol Njeri',email:'carol@example.com'},
+  ];
+  seededOrders.forEach(o => {
+    orderHistory.append(o);
+    if (o.status === 'pending' || o.status === 'processing') {
+      orderQueue.enqueue(o); // pending orders go into processing queue
+    }
+  });
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 7: AUTH
+   ════════════════════════════════════════════════════════════════ */
+function switchAuthTab(tab) {
+  document.querySelectorAll('.login-tab').forEach((t,i) => t.classList.toggle('active', (i===0&&tab==='signin')||(i===1&&tab==='signup')));
+  document.getElementById('signin-form').classList.toggle('hidden', tab !== 'signin');
+  document.getElementById('signup-form').classList.toggle('hidden', tab !== 'signup');
+}
+
+// Sign in — O(1) HashMap lookup
+function handleSignIn() {
+  const email    = document.getElementById('login-email').value.trim().toLowerCase();
+  const password = document.getElementById('login-password').value;
+  const user = userDB.get(email);
+  if (!user) { authError('No account found for that email.'); return; }
+  if (user.password !== password) { authError('Incorrect password.'); return; }
+  loginSuccess(user);
+}
+
+// Register — O(1) HashMap insert
+function handleRegister() {
+  const fname = document.getElementById('reg-fname').value.trim();
+  const lname = document.getElementById('reg-lname').value.trim();
+  const email = document.getElementById('reg-email').value.trim().toLowerCase();
+  const pass  = document.getElementById('reg-password').value;
+  const role  = document.getElementById('reg-role').value;
+  if (!fname||!lname||!email||!pass) { authError('Please fill in all fields.'); return; }
+  if (pass.length < 8) { authError('Password must be at least 8 characters.'); return; }
+  if (userDB.has(email)) { authError('An account already exists with that email.'); return; }
+  const newUser = {
+    name:`${fname} ${lname}`, email, password:pass, role,
+    joinDate:new Date().toISOString().split('T')[0],
+    totalSpend:0, orderCount:0, active:true
+  };
+  userDB.set(email, newUser); // O(1)
+  loginSuccess(newUser);
+}
+
+function authError(msg) {
+  toast(msg, 'error');
+}
+
+function loginSuccess(user) {
+  currentUser = user;
+  // Hide login screen with animation
+  const ls = document.getElementById('login-screen');
+  ls.style.transition = 'opacity .4s';
+  ls.style.opacity = '0';
+  setTimeout(() => ls.classList.add('hidden'), 400);
+  // Update nav UI
+  document.getElementById('user-avatar').textContent = user.name.charAt(0).toUpperCase();
+  document.getElementById('user-display-name').textContent = user.name.split(' ')[0];
+  if (user.role === 'admin') {
+    document.getElementById('nav-admin-badge').classList.remove('hidden');
+    document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
+  }
+  toast(`Welcome back, ${user.name.split(' ')[0]}! 👋`, 'success');
+  renderHome();
+  updateNavBadges();
+}
+
+function showUserMenu() {
+  if (!currentUser) return;
+  openModal('Account', `
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;align-items:center;gap:16px;padding:16px;background:var(--surface-2);border-radius:var(--radius-md)">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--gold-dim);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--gold)">
+          ${currentUser.name.charAt(0)}
+        </div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:20px">${currentUser.name}</div>
+          <div style="font-size:13px;color:var(--text-secondary)">${currentUser.email}</div>
+          <span class="badge ${currentUser.role==='admin'?'badge-terra':'badge-gold'}" style="margin-top:4px">${currentUser.role}</span>
+        </div>
+      </div>
+      <div class="spec-grid">
+        <div class="spec-item"><div class="spec-label">Member Since</div><div class="spec-value">${currentUser.joinDate}</div></div>
+        <div class="spec-item"><div class="spec-label">Total Orders</div><div class="spec-value">${currentUser.orderCount}</div></div>
+        <div class="spec-item"><div class="spec-label">Total Spend</div><div class="spec-value">KES ${currentUser.totalSpend.toLocaleString()}</div></div>
+        <div class="spec-item"><div class="spec-label">Account Type</div><div class="spec-value">${currentUser.role}</div></div>
+      </div>
+    </div>`,
+    `<button class="btn btn-danger" onclick="handleLogout()">Sign Out</button><button class="btn btn-outline" onclick="closeModal()">Close</button>`);
+}
+
+function handleLogout() {
+  closeModal();
+  currentUser = null;
+  // Clear session state
+  wishlistSet.clear();
+  cartMap.keys().forEach(k => cartMap.delete(k));
+  updateNavBadges();
+  document.querySelectorAll('.admin-only').forEach(el => el.classList.add('hidden'));
+  document.getElementById('nav-admin-badge').classList.add('hidden');
+  // Show login screen again
+  const ls = document.getElementById('login-screen');
+  ls.classList.remove('hidden');
+  ls.style.opacity = '0';
+  setTimeout(() => { ls.style.transition = 'opacity .4s'; ls.style.opacity = '1'; }, 10);
+  toast('You have been signed out.', 'info');
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 8: UI UTILITIES
+   ════════════════════════════════════════════════════════════════ */
+function toast(message, type='info', duration=3200) {
+  const icons = { success:'✅', error:'❌', info:'ℹ️' };
+  const el = document.createElement('div');
+  el.className = `toast toast-${type}`;
+  el.innerHTML = `<span style="font-size:16px">${icons[type]}</span><span>${message}</span>`;
+  document.getElementById('toast-container').appendChild(el);
+  setTimeout(() => {
+    el.style.opacity='0'; el.style.transform='translateX(20px)'; el.style.transition='.3s';
+    setTimeout(()=>el.remove(),300);
+  }, duration);
+}
+
+function openModal(title, bodyHTML, footerHTML='') {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').innerHTML = bodyHTML;
+  document.getElementById('modal-footer').innerHTML = footerHTML;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
+
+function formatPrice(n) { return 'KES ' + (n||0).toLocaleString(); }
+
+function stars(rating) {
+  const full = Math.floor(rating), half = rating % 1 >= 0.5 ? 1 : 0;
+  return '★'.repeat(full) + (half?'½':'') + '☆'.repeat(5-full-half);
+}
+
+function navigate(page, extra=null) {
+  // Guard admin pages — O(1) role check
+  if (['dashboard','inventory','clients','benchmark'].includes(page) && currentUser?.role !== 'admin') {
+    toast('Admin access required', 'error'); return;
+  }
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const pageEl = document.getElementById(`page-${page}`);
+  if (pageEl) pageEl.classList.add('active');
+  const navLink = document.querySelector(`.nav-link[data-page="${page}"]`);
+  if (navLink) navLink.classList.add('active');
+  state.currentPage = page;
+  window.scrollTo(0,0);
+  if (page==='product' && extra) renderProductDetail(extra);
+  if (page==='cart') renderCart();
+  if (page==='orders') renderOrders();
+  if (page==='wishlist') renderWishlist();
+  if (page==='dashboard') renderDashboard();
+  if (page==='inventory') renderInventory();
+  if (page==='clients') renderClients();
+  if (page==='benchmark') renderBenchmarkPage();
+  if (page==='shop') renderShop();
+}
+
+function updateNavBadges() {
+  document.getElementById('cart-count').textContent = cartMap.keys().length;
+  document.getElementById('wishlist-count').textContent = wishlistSet.size;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 9: PRODUCT CARD
+   ════════════════════════════════════════════════════════════════ */
+function renderProductCard(p) {
+  const inWishlist = wishlistSet.has(p.id);
+  const discount = p.originalPrice ? Math.round((1-p.price/p.originalPrice)*100) : 0;
+  let stockClass = 'stock-ok', stockLabel = `${p.stock} in stock`;
+  if (p.stock === 0) { stockClass='stock-out'; stockLabel='Out of stock'; }
+  else if (p.stock <= p.reorderAt) { stockClass='stock-low'; stockLabel=`Only ${p.stock} left!`; }
+  return `<div class="product-card" onclick="navigate('product','${p.id}')">
+    <div class="product-img">
+      ${p.icon}
+      ${discount?`<span class="product-discount-badge">-${discount}%</span>`:''}
+      <button class="product-wishlist-btn ${inWishlist?'active':''}" onclick="event.stopPropagation();toggleWishlist('${p.id}')" title="Wishlist">
+        ${inWishlist?'❤️':'🤍'}
+      </button>
+    </div>
+    <div class="product-info">
+      <div class="product-category">${p.category}</div>
+      <div class="product-name">${p.name}</div>
+      <div class="product-rating"><span class="stars">${stars(p.rating)}</span><span>${p.rating} (${p.reviews})</span></div>
+      <div class="product-price-row">
+        <div>
+          <span class="product-price">${formatPrice(p.price)}</span>
+          ${p.originalPrice?`<span class="product-original-price">${formatPrice(p.originalPrice)}</span>`:''}
+        </div>
+        <button class="product-add-btn" onclick="event.stopPropagation();addToCart('${p.id}')" title="Add to cart">+</button>
+      </div>
+      <div class="product-stock ${stockClass}">${stockLabel}</div>
+    </div>
+  </div>`;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 10: HOME PAGE
+   ════════════════════════════════════════════════════════════════ */
+function renderHome() {
+  const animate = (el, target, suffix='') => {
+    let v=0; const step=target/40;
+    const iv=setInterval(()=>{ v=Math.min(v+step,target); el.textContent=Math.round(v).toLocaleString()+suffix; if(v>=target)clearInterval(iv); },30);
+  };
+  setTimeout(()=>{
+    animate(document.getElementById('stat-products'), productDB.values().length);
+    animate(document.getElementById('stat-orders'), orderHistory.length + 9842);
+    animate(document.getElementById('stat-vendors'), 48);
+    const avgR = PRODUCTS_SEED.reduce((s,p)=>s+p.rating,0)/PRODUCTS_SEED.length;
+    document.getElementById('stat-rating').textContent = avgR.toFixed(1)+'★';
+  },300);
+
+  // Categories grid
+  document.getElementById('categories-grid').innerHTML = CATEGORIES.map(c=>`
+    <div class="card" style="padding:20px;text-align:center;cursor:pointer;border-top:3px solid ${c.color}20"
+      onclick="filterByCategory('${c.id}')"
+      onmouseenter="this.style.borderTopColor='${c.color}'"
+      onmouseleave="this.style.borderTopColor='${c.color}20'">
+      <div style="font-size:32px;margin-bottom:10px">${c.icon}</div>
+      <div style="font-size:13px;font-weight:500">${c.name}</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:4px;font-family:var(--font-mono)">${PRODUCTS_SEED.filter(p=>p.cat===c.id).length} items</div>
+    </div>`).join('');
+
+  // Featured: Top-4 by popularity via Max-Heap — O(n log 4)
+  const featured = topK(productDB.values(), 4, p=>p.popularity);
+  document.getElementById('featured-products').innerHTML = featured.map(renderProductCard).join('');
+
+  // Recommendations
+  const interacted = [...wishlistSet, ...cartMap.keys()];
+  let recommended;
+  if (interacted.length > 0) {
+    const visited = new Set(interacted); const recs = [];
+    // BFS graph traversal — O(V+E)
+    for (const id of interacted) {
+      similarityGraph.bfs(id,2).filter(sid=>!visited.has(sid)).forEach(sid=>{visited.add(sid);recs.push(sid);});
+    }
+    recommended = recs.slice(0,4).map(id=>productDB.get(id)).filter(Boolean);
+  }
+  if (!recommended?.length) {
+    recommended = mergeSort(productDB.values(),(a,b)=>b.rating-a.rating).slice(0,4);
+  }
+  document.getElementById('recommended-products').innerHTML = recommended.map(renderProductCard).join('');
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 11: SHOP PAGE
+   ════════════════════════════════════════════════════════════════ */
+function renderShop() {
+  document.getElementById('filter-categories').innerHTML =
+    `<label style="display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:13px">
+      <input type="radio" name="cat" value="" ${!state.shopFilters.category?'checked':''} onchange="filterByCategory('')" style="accent-color:var(--gold)"/> All Categories
+    </label>` + CATEGORIES.map(c=>`
+    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:13px">
+      <input type="radio" name="cat" value="${c.id}" ${state.shopFilters.category===c.id?'checked':''} onchange="filterByCategory('${c.id}')" style="accent-color:var(--gold)"/>
+      ${c.icon} ${c.name} <span style="color:var(--text-muted);font-size:11px;font-family:var(--font-mono)">(${PRODUCTS_SEED.filter(p=>p.cat===c.id).length})</span>
+    </label>`).join('');
+  document.getElementById('rating-filters').innerHTML = [4,3,2,1].map(r=>`
+    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:13px">
+      <input type="radio" name="rating" value="${r}" ${state.shopFilters.minRating===r?'checked':''} onchange="filterByRating(${r})" style="accent-color:var(--gold)"/>
+      <span style="color:var(--gold)">${'★'.repeat(r)}</span> & up
+    </label>`).join('');
+  applyFilters();
+}
+
+function applyFilters() {
+  let products = productDB.values();
+  const f = state.shopFilters;
+  // Category filter — O(n)
+  if (f.category) products = products.filter(p=>p.category===f.category);
+  // Price filter — O(n); for larger sets use lowerBound on sorted array
+  products = products.filter(p=>p.price<=f.maxPrice);
+  if (f.minRating) products = products.filter(p=>p.rating>=f.minRating);
+  if (f.inStockOnly) products = products.filter(p=>p.stock>0);
+  // KMP text search — O(n·(m+|text|))
+  if (f.query.trim()) {
+    const q = f.query.toLowerCase();
+    products = products.filter(p=>{
+      const text = (p.name+' '+p.desc+' '+p.tags.join(' ')).toLowerCase();
+      return kmpSearch(text,q).length>0;
+    });
+  }
+  // Merge Sort — O(n log n) stable sort
+  switch(state.shopSort) {
+    case 'price_asc':  products = mergeSort(products,(a,b)=>a.price-b.price); break;
+    case 'price_desc': products = mergeSort(products,(a,b)=>b.price-a.price); break;
+    case 'rating':     products = mergeSort(products,(a,b)=>b.rating-a.rating); break;
+    case 'newest':     products = mergeSort(products,(a,b)=>b.id.localeCompare(a.id)); break;
+    case 'popular':    products = mergeSort(products,(a,b)=>b.popularity-a.popularity); break;
+    default:           products = mergeSort(products,(a,b)=>b.popularity-a.popularity);
+  }
+  const total=products.length, page=state.shopPage, perPage=state.itemsPerPage;
+  const pageProducts = products.slice((page-1)*perPage, page*perPage);
+  document.getElementById('results-count').textContent = total;
+  document.getElementById('shop-products').innerHTML = pageProducts.length
+    ? pageProducts.map(renderProductCard).join('')
+    : '<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-secondary)">No products match your filters.</div>';
+  renderPagination(total, page, perPage);
+  renderActiveTags();
+}
+
+function renderPagination(total,current,perPage) {
+  const pages=Math.ceil(total/perPage);
+  if (pages<=1){document.getElementById('pagination').innerHTML='';return;}
+  let html='';
+  for(let i=1;i<=pages;i++){
+    if(i===1||i===pages||Math.abs(i-current)<=1) html+=`<button class="page-btn ${i===current?'active':''}" onclick="goToPage(${i})">${i}</button>`;
+    else if(Math.abs(i-current)===2) html+=`<span style="color:var(--text-muted);padding:0 4px">…</span>`;
+  }
+  document.getElementById('pagination').innerHTML = html;
+}
+function goToPage(n){state.shopPage=n;applyFilters();window.scrollTo(0,120);}
+
+function renderActiveTags() {
+  const f=state.shopFilters; const tags=[];
+  if(f.category) tags.push(`<span class="tag active" onclick="filterByCategory('')">✕ ${f.category}</span>`);
+  if(f.maxPrice<200000) tags.push(`<span class="tag active" onclick="clearPriceFilter()">✕ Under ${formatPrice(f.maxPrice)}</span>`);
+  if(f.minRating) tags.push(`<span class="tag active" onclick="filterByRating(0)">✕ ${f.minRating}★+</span>`);
+  if(f.inStockOnly) tags.push(`<span class="tag active" onclick="clearStockFilter()">✕ In Stock</span>`);
+  document.getElementById('active-tags').innerHTML = tags.length?`<span class="filters-label">Active:</span>${tags.join('')}`:'';
+}
+
+// Trie autocomplete handler — O(L+k)
+function handleShopSearch(val) {
+  const sugg=document.getElementById('search-suggestions');
+  if(!val.trim()){sugg.classList.add('hidden');return;}
+  const results=searchTrie.autocomplete(val,6);
+  if(!results.length){sugg.classList.add('hidden');return;}
+  sugg.classList.remove('hidden');
+  sugg.innerHTML=results.map(r=>`
+    <div class="search-suggestion-item" onclick="selectSuggestion('${r.word}')">
+      <span>${r.data?.icon||'🔍'}</span><span>${r.word}</span>
+      ${r.data?`<span style="font-size:11px;color:var(--text-muted);margin-left:auto">${r.data.name}</span>`:''}
+    </div>`).join('');
+}
+function selectSuggestion(word){document.getElementById('shop-search').value=word;document.getElementById('search-suggestions').classList.add('hidden');executeSearch();}
+function executeSearch(){const q=document.getElementById('shop-search').value.trim();if(!q)return;state.shopFilters.query=q;state.shopPage=1;applyFilters();document.getElementById('search-suggestions').classList.add('hidden');}
+document.addEventListener('click',e=>{if(!e.target.closest('.search-wrapper'))document.getElementById('search-suggestions').classList.add('hidden');});
+
+function filterByCategory(cat){
+  state.shopFilters.category=cat||null; state.shopPage=1;
+  document.querySelectorAll('input[name="cat"]').forEach(r=>{r.checked=r.value===(cat||'');});
+  if(state.currentPage!=='shop')navigate('shop'); else applyFilters();
+}
+function filterByPrice(val){state.shopFilters.maxPrice=parseInt(val);document.getElementById('price-max-display').textContent=formatPrice(parseInt(val));state.shopPage=1;applyFilters();}
+function filterByRating(r){state.shopFilters.minRating=r;state.shopPage=1;applyFilters();}
+function clearFilters(){state.shopFilters={category:null,maxPrice:200000,minRating:0,inStockOnly:false,query:''};state.shopPage=1;document.getElementById('price-max').value=200000;document.getElementById('price-max-display').textContent='KES 200,000';document.getElementById('in-stock-only').checked=false;document.getElementById('shop-search').value='';renderShop();}
+function clearPriceFilter(){state.shopFilters.maxPrice=200000;document.getElementById('price-max').value=200000;document.getElementById('price-max-display').textContent='KES 200,000';applyFilters();}
+function clearStockFilter(){state.shopFilters.inStockOnly=false;document.getElementById('in-stock-only').checked=false;applyFilters();}
+function sortProducts(val){state.shopSort=val;state.shopPage=1;applyFilters();}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 12: PRODUCT DETAIL (LRU Cache)
+   ════════════════════════════════════════════════════════════════ */
+function renderProductDetail(productId) {
+  // Check LRU cache first — O(1)
+  let p = detailCache.get(productId);
+  if (!p) {
+    p = productDB.get(productId); // HashMap O(1)
+    if (p) detailCache.put(productId, p); // cache it
+  }
+  if (!p) return;
+  state.currentProduct = p;
+  const discount = p.originalPrice?Math.round((1-p.price/p.originalPrice)*100):0;
+  document.getElementById('product-detail-content').innerHTML = `
+    <div>
+      <div class="product-detail-img">
+        ${p.icon}
+        ${discount?`<div style="position:absolute;top:20px;right:20px"><span class="badge badge-terra">-${discount}% OFF</span></div>`:''}
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:8px">${p.vendor} · ${p.category}</div>
+      <h1 class="product-detail-name">${p.name}</h1>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+        <span style="color:var(--gold);font-size:18px">${stars(p.rating)}</span>
+        <span>${p.rating}/5.0 (${p.reviews} reviews)</span>
+        <span class="badge ${p.stock>p.reorderAt?'badge-success':p.stock>0?'badge-terra':'badge-danger'}">${p.stock>0?p.stock+' in stock':'Out of stock'}</span>
+      </div>
+      <div class="product-detail-price">
+        ${formatPrice(p.price)}
+        ${p.originalPrice?`<span style="font-size:18px;text-decoration:line-through;color:var(--text-muted);margin-left:12px">${formatPrice(p.originalPrice)}</span>`:''}
+      </div>
+      <p class="product-detail-desc">${p.desc}</p>
+      <div class="spec-grid">
+        <div class="spec-item"><div class="spec-label">Category</div><div class="spec-value">${p.category}</div></div>
+        <div class="spec-item"><div class="spec-label">Vendor</div><div class="spec-value">${p.vendor}</div></div>
+        <div class="spec-item"><div class="spec-label">SKU</div><div class="spec-value">${p.id.toUpperCase()}</div></div>
+        <div class="spec-item"><div class="spec-label">Popularity</div><div class="spec-value">${p.popularity}/1000</div></div>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="font-size:12px;color:var(--text-secondary);letter-spacing:.05em;text-transform:uppercase;font-weight:500;margin-bottom:8px">Tags</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="qty-large">
+        <span style="font-size:13px;color:var(--text-secondary);font-weight:500;letter-spacing:.04em;text-transform:uppercase">Qty:</span>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeDetailQty(-1)">−</button>
+          <input class="qty-val" id="detail-qty" type="number" value="1" min="1" max="${p.stock}"/>
+          <button class="qty-btn" onclick="changeDetailQty(1)">+</button>
+        </div>
+      </div>
+      <div class="detail-actions">
+        <button class="btn btn-primary btn-lg" onclick="addToCartFromDetail()" ${p.stock===0?'disabled style="opacity:.5"':''}>Add to Cart 🛒</button>
+        <button class="btn btn-outline btn-lg" onclick="toggleWishlist('${p.id}');this.textContent=wishlistSet.has('${p.id}')?'♥ Saved':'♡ Wishlist'">
+          ${wishlistSet.has(p.id)?'♥ Saved':'♡ Wishlist'}
+        </button>
+      </div>
+    </div>`;
+
+  // BFS similar products — O(V+E)
+  const similar = similarityGraph.bfs(p.id,2).slice(0,4);
+  document.getElementById('similar-products').innerHTML =
+    similar.map(id=>productDB.get(id)).filter(Boolean).map(renderProductCard).join('') ||
+    '<p style="color:var(--text-secondary)">No similar products found.</p>';
+
+  document.getElementById('product-back-btn').onclick = () => navigate('shop');
+}
+function changeDetailQty(delta){
+  const el=document.getElementById('detail-qty');
+  const max=state.currentProduct?.stock||1;
+  el.value=Math.max(1,Math.min(max,parseInt(el.value)+delta));
+}
+function addToCartFromDetail(){
+  const p=state.currentProduct; if(!p)return;
+  const qty=parseInt(document.getElementById('detail-qty').value)||1;
+  const prev=cartMap.get(p.id)||0;
+  cartMap.set(p.id,prev+qty);
+  // Push to undo stack — O(1)
+  cartUndoStack.push({action:'add',id:p.id,prevQty:prev,newQty:prev+qty,name:p.name,ts:Date.now()});
+  updateNavBadges();
+  toast(`${p.name} × ${qty} added to cart`,'success');
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 13: CART (HashMap + Stack undo)
+   ════════════════════════════════════════════════════════════════ */
+function addToCart(productId) {
+  const p=productDB.get(productId);
+  if(!p||p.stock===0){toast('Product out of stock','error');return;}
+  const prev=cartMap.get(productId)||0;
+  cartMap.set(productId,prev+1); // HashMap O(1)
+  // Record action in undo stack — O(1) push
+  cartUndoStack.push({action:'add',id:productId,prevQty:prev,newQty:prev+1,name:p.name,ts:Date.now()});
+  updateNavBadges();
+  toast(`${p.name} added to cart`,'success');
+}
+
+function undoLastCartAction() {
+  if(cartUndoStack.isEmpty()){toast('Nothing to undo','info');return;}
+  const frame = cartUndoStack.pop(); // Stack O(1)
+  if(frame.prevQty===0) cartMap.delete(frame.id);
+  else cartMap.set(frame.id, frame.prevQty);
+  updateNavBadges(); renderCart();
+  toast(`Undid: ${frame.action} "${frame.name}"`,'info');
+}
+
+function renderCart(){
+  const el=document.getElementById('cart-content');
+  const cartIds=cartMap.keys();
+  if(!cartIds.length){
+    el.innerHTML=`<div class="empty-cart"><div class="empty-icon">🛒</div>
+      <div style="font-family:var(--font-display);font-size:24px;font-weight:300;margin-bottom:8px">Your cart is empty</div>
+      <div style="color:var(--text-secondary);font-size:14px">Discover amazing products and add them to your cart.</div>
+      <br/><button class="btn btn-primary btn-lg" onclick="navigate('shop')">Start Shopping</button></div>`;
+    return;
+  }
+  let subtotal=0;
+  const items=cartIds.map(id=>{const p=productDB.get(id),qty=cartMap.get(id)||1;subtotal+=p.price*qty;return{p,qty};});
+  const discount=state.coupon?subtotal*state.coupon.discount:0;
+  const shipping=subtotal>10000?0:350;
+  const total=subtotal-discount+shipping;
+  // Undo bar — shows top of stack
+  const topAction=cartUndoStack.peek();
+  const undoBar = topAction ? `<div class="undo-bar">
+    <span>⟳ Last action: <strong>${topAction.action}</strong> "${topAction.name}"</span>
+    <button class="btn btn-ghost btn-sm" onclick="undoLastCartAction()">Undo</button>
+  </div>` : '';
+
+  el.innerHTML=`
+    <div class="cart-layout">
+      <div>
+        ${undoBar}
+        <div class="cart-items">
+          ${items.map(({p,qty})=>`
+            <div class="cart-item">
+              <div class="cart-item-img">${p.icon}</div>
+              <div class="cart-item-info">
+                <div class="cart-item-name">${p.name}</div>
+                <div class="cart-item-meta">${p.vendor} · ${p.category}</div>
+                <div class="qty-control" style="margin-top:10px">
+                  <button class="qty-btn" onclick="updateCartQty('${p.id}',-1)">−</button>
+                  <span class="qty-val">${qty}</span>
+                  <button class="qty-btn" onclick="updateCartQty('${p.id}',1)">+</button>
+                </div>
+              </div>
+              <div>
+                <div class="cart-item-price">${formatPrice(p.price*qty)}</div>
+                <div style="font-size:12px;color:var(--text-muted);text-align:right">${formatPrice(p.price)} each</div>
+                <button class="btn btn-danger btn-sm" style="margin-top:10px" onclick="removeFromCart('${p.id}')">Remove</button>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="cart-summary">
+        <div class="summary-title">Order Summary</div>
+        <div class="summary-row"><span>Subtotal (${items.length} items)</span><span class="summary-value">${formatPrice(subtotal)}</span></div>
+        ${discount?`<div class="summary-row" style="color:var(--success)"><span>Coupon Discount</span><span class="summary-value">−${formatPrice(discount)}</span></div>`:''}
+        <div class="summary-row"><span>Delivery</span><span class="summary-value">${shipping===0?'<span style="color:var(--success)">Free</span>':formatPrice(shipping)}</span></div>
+        <div class="summary-row total"><span>Total</span><span class="summary-value">${formatPrice(total)}</span></div>
+        <div class="divider"></div>
+        ${state.coupon?`<div class="coupon-badge">🎟 ${state.coupon.label} <span class="coupon-remove" onclick="removeCoupon()">✕</span></div>`:`
+        <div class="promo-row">
+          <input class="input" type="text" id="coupon-input" placeholder="Coupon code (e.g. SAVE20)" style="flex:1"/>
+          <button class="btn btn-outline" onclick="applyCoupon()">Apply</button>
+        </div>`}
+        <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px" onclick="showCheckout()">Proceed to Checkout →</button>
+        <button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:8px" onclick="navigate('shop')">Continue Shopping</button>
+        <div style="margin-top:16px;font-size:11px;color:var(--text-muted);text-align:center;font-family:var(--font-mono)">🔒 SSL · M-Pesa · Visa · Mastercard</div>
+      </div>
+    </div>`;
+}
+
+function updateCartQty(id,delta){
+  const curr=cartMap.get(id)||0, p=productDB.get(id);
+  const newQty=curr+delta;
+  if(newQty<=0){removeFromCart(id);return;}
+  if(delta>0 && newQty>p.stock){toast(`Only ${p.stock} in stock`,'error');return;}
+  cartUndoStack.push({action:'qty',id,prevQty:curr,newQty,name:p.name,ts:Date.now()});
+  cartMap.set(id,newQty); updateNavBadges(); renderCart();
+}
+function removeFromCart(id){
+  const prev=cartMap.get(id)||0, p=productDB.get(id);
+  cartUndoStack.push({action:'remove',id,prevQty:prev,newQty:0,name:p?.name||id,ts:Date.now()});
+  cartMap.delete(id); updateNavBadges(); renderCart();
+  toast('Item removed (undo available)','info');
+}
+function applyCoupon(){
+  const code=document.getElementById('coupon-input')?.value.trim().toUpperCase();
+  const c=coupons.get(code); // HashMap O(1)
+  if(c){state.coupon=c;renderCart();toast(`Coupon applied: ${c.label}`,'success');}
+  else toast('Invalid coupon code','error');
+}
+function removeCoupon(){state.coupon=null;renderCart();}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 14: CHECKOUT — Dijkstra routing + stock deduction
+   ════════════════════════════════════════════════════════════════ */
+function showCheckout(){
+  if(!currentUser){toast('Please sign in to checkout','error');return;}
+  if(!cartMap.keys().length){navigate('cart');toast('Your cart is empty!','error');return;}
+  // Build delivery graph (Nairobi zones)
+  const deliveryGraph = new Map([
+    ['warehouse', [{node:'westlands',weight:3},{node:'cbd',weight:5}]],
+    ['westlands',  [{node:'kilimani',weight:2},{node:'cbd',weight:4},{node:'warehouse',weight:3}]],
+    ['cbd',        [{node:'eastlands',weight:6},{node:'kilimani',weight:3},{node:'warehouse',weight:5}]],
+    ['kilimani',   [{node:'karen',weight:5},{node:'cbd',weight:3}]],
+    ['karen',      [{node:'kilimani',weight:5},{node:'rongai',weight:8}]],
+    ['eastlands',  [{node:'cbd',weight:6},{node:'kasarani',weight:4}]],
+    ['kasarani',   [{node:'eastlands',weight:4}]],
+    ['rongai',     [{node:'karen',weight:8}]],
+  ]);
+  // Dijkstra — O((V+E) log V)
+  const dists = dijkstra(deliveryGraph,'warehouse');
+  const zones = ['westlands','kilimani','karen','eastlands','kasarani','cbd','rongai'];
+  let subtotal=0;
+  cartMap.keys().forEach(id=>{const p=productDB.get(id);subtotal+=(p?.price||0)*(cartMap.get(id)||1);});
+  const discount=state.coupon?subtotal*state.coupon.discount:0;
+  const shipping=subtotal>10000?0:350;
+  const total=subtotal-discount+shipping;
+
+  openModal('Checkout',`
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>Full Name</label><input class="input" id="co-name" value="${currentUser.name}"/></div>
+        <div><label>Phone (M-Pesa)</label><input class="input" id="co-phone" placeholder="0712 345 678"/></div>
+      </div>
+      <div><label>Delivery Zone <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted)">(Dijkstra Shortest Path)</span></label>
+        <select class="input select" id="co-zone" onchange="updateDeliveryETA(this.value)">
+          ${zones.map(z=>`<option value="${z}">${z.charAt(0).toUpperCase()+z.slice(1)} — ${dists[z]} km away</option>`).join('')}
+        </select>
+      </div>
+      <div id="delivery-eta" style="background:var(--surface-2);border-radius:var(--radius-sm);padding:12px;font-size:13px;color:var(--text-secondary)">
+        📍 Estimated delivery: <strong style="color:var(--gold)">1–2 business days</strong>
+      </div>
+      <div><label>Payment Method</label>
+        <div style="display:flex;gap:10px">
+          ${['M-Pesa 📱','Visa 💳','Cash on Delivery 💵'].map((m,i)=>`
+            <label style="flex:1;text-transform:none;letter-spacing:0;font-size:13px">
+              <input type="radio" name="pay" value="${m}" ${i===0?'checked':''} style="accent-color:var(--gold)"/> ${m}
+            </label>`).join('')}
+        </div>
+      </div>
+      <div style="background:var(--surface-2);border-radius:var(--radius-sm);padding:14px;font-size:13px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>Subtotal</span><span style="font-family:var(--font-mono)">${formatPrice(subtotal)}</span></div>
+        ${discount?`<div style="display:flex;justify-content:space-between;margin-bottom:6px;color:var(--success)"><span>Discount</span><span>−${formatPrice(discount)}</span></div>`:''}
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>Shipping</span><span>${shipping===0?'Free':formatPrice(shipping)}</span></div>
+        <div style="display:flex;justify-content:space-between;font-family:var(--font-display);font-size:18px;color:var(--gold);border-top:1px solid var(--border);padding-top:8px;margin-top:4px">
+          <span>Total</span><span>${formatPrice(total)}</span>
+        </div>
+      </div>
+    </div>`,
+    `<button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+     <button class="btn btn-primary btn-lg" onclick="placeOrder()">Place Order — ${formatPrice(total)}</button>`);
+}
+
+function updateDeliveryETA(zone){
+  const etaMap={warehouse:0,westlands:1,cbd:1,kilimani:2,karen:2,eastlands:2,kasarani:3,rongai:3};
+  const days=etaMap[zone]||2;
+  document.getElementById('delivery-eta').innerHTML=`📍 Estimated delivery: <strong style="color:var(--gold)">${days===0?'Same day':days===1?'Next day':days+' business days'}</strong>`;
+}
+
+function placeOrder(){
+  const cartIds=cartMap.keys(); if(!cartIds.length)return;
+  const orderId='ORD-'+Date.now().toString(36).toUpperCase();
+  const items=cartIds.map(id=>({id,qty:cartMap.get(id)}));
+  let total=0;
+  items.forEach(({id,qty})=>{const p=productDB.get(id);total+=(p?.price||0)*qty;});
+
+  // ── STOCK DEDUCTION — O(k) where k = cart items ──────────────
+  // Reduce stock for each purchased product; alert if stock hits reorder threshold
+  items.forEach(({id,qty})=>{
+    const p=productDB.get(id);
+    if(p){
+      const prevStock=p.stock;
+      p.stock=Math.max(0, p.stock-qty); // deduct purchased qty
+      productDB.set(id,p); // update HashMap — O(1)
+      // Alert admin if stock falls to reorder threshold
+      if(prevStock>p.reorderAt && p.stock<=p.reorderAt){
+        toast(`⚠️ Low stock alert: ${p.name} (${p.stock} left)`, 'error', 5000);
+      }
+    }
+  });
+
+  // Append to order DLL — O(1)
+  const order={id:orderId,items,status:'pending',date:new Date().toISOString().split('T')[0],total,customer:currentUser.name,email:currentUser.email};
+  orderHistory.append(order);
+
+  // Enqueue to order processing queue — O(1)
+  orderQueue.enqueue(order);
+
+  // Update user spend stats — O(1) HashMap update
+  currentUser.totalSpend += total;
+  currentUser.orderCount += 1;
+  userDB.set(currentUser.email, currentUser);
+
+  // Clear cart HashMap — O(k)
+  cartIds.forEach(id=>cartMap.delete(id));
+  cartUndoStack.items.length=0; // clear undo stack after purchase
+  state.coupon=null;
+  updateNavBadges();
+  closeModal();
+  toast(`Order ${orderId} placed! Stock updated. 🎉`,'success',5000);
+  // Simulate order processing from queue after 2 seconds
+  setTimeout(()=>processNextOrder(),2000);
+  navigate('orders');
+}
+
+// Process next order from queue — FIFO — O(1) dequeue
+function processNextOrder(){
+  if(orderQueue.isEmpty()) return;
+  const order=orderQueue.dequeue(); // O(1)
+  orderQueue.compact(); // periodically compact the array
+  // Find in DLL and advance status
+  let cur=orderHistory.head;
+  while(cur){
+    if(cur.data.id===order.id && cur.data.status==='pending'){
+      cur.data.status='processing';
+      toast(`Order ${order.id} is now being processed ⚙️`,'info');
+      break;
+    }
+    cur=cur.next;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 15: ORDERS PAGE
+   ════════════════════════════════════════════════════════════════ */
+function renderOrders(){
+  // Show queue visualizer
+  const queueArr=orderQueue.toArray();
+  const queueViz=document.getElementById('orders-queue-viz');
+  if(queueArr.length){
+    queueViz.innerHTML=`<div class="queue-visualiser">
+      <div class="queue-title">⏳ Order Processing Queue (FIFO) — ${queueArr.length} pending</div>
+      <div class="queue-items">
+        ${queueArr.map((o,i)=>`<div class="queue-item ${i===0?'processing':''}">${o.id}<br/><span style="font-size:10px;opacity:.7">${o.status}</span></div>`).join('')}
+      </div>
+    </div>`;
+  } else queueViz.innerHTML='';
+
+  const orders=orderHistory.toArray().reverse();
+  const el=document.getElementById('orders-list');
+  // Filter to current user unless admin
+  const myOrders = currentUser?.role==='admin'?orders:orders.filter(o=>o.email===currentUser?.email);
+  if(!myOrders.length){
+    el.innerHTML='<div class="empty-cart"><div class="empty-icon">📦</div><div style="font-family:var(--font-display);font-size:24px">No orders yet</div></div>';
+    return;
+  }
+  const statusFlow=['pending','processing','shipped','out_for_delivery','delivered'];
+  const statusIcons={pending:'🕐',processing:'⚙️',shipped:'🚢',out_for_delivery:'🚚',delivered:'✅'};
+  const statusLabels={pending:'Pending',processing:'Processing',shipped:'Shipped',out_for_delivery:'Out for Delivery',delivered:'Delivered'};
+  el.innerHTML=myOrders.map(o=>{
+    const sIdx=statusFlow.indexOf(o.status);
+    const timeline=statusFlow.map((s,i)=>{
+      const cls=i<sIdx?'done':i===sIdx?'active':'';
+      return `<div class="timeline-step ${cls}"><div class="timeline-dot">${statusIcons[s]}</div><div class="timeline-label">${statusLabels[s]}</div></div>`;
+    }).join('');
+    // Admin gets status advance button
+    const adminActions = currentUser?.role==='admin' && o.status!=='delivered'
+      ? `<button class="btn btn-success btn-sm" onclick="event.stopPropagation();advanceOrderStatus('${o.id}')">Advance Status →</button>` : '';
+    return `<div class="order-card" onclick="this.querySelector('.order-status-timeline').classList.toggle('hidden')">
+      <div class="order-header">
+        <div><div class="order-id">${o.id}</div><div class="order-date">${o.date} · ${o.customer}</div></div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="badge ${o.status==='delivered'?'badge-success':o.status==='pending'?'badge-terra':'badge-gold'}">${statusIcons[o.status]} ${statusLabels[o.status]}</span>
+          ${adminActions}
+        </div>
+      </div>
+      <div class="order-items-preview">
+        ${o.items.map(({id,qty})=>{const p=productDB.get(id);return p?`<div class="order-item-thumb" title="${p.name}×${qty}">${p.icon}</div>`:''}).join('')}
+        <span style="margin-left:auto;font-size:13px;color:var(--text-secondary)">${o.items.length} item(s)</span>
+      </div>
+      <div class="order-footer"><span style="font-size:13px;color:var(--text-secondary)">Click for timeline</span><span class="order-total">${formatPrice(o.total)}</span></div>
+      <div class="order-status-timeline hidden" style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">${timeline}</div>
+    </div>`;
+  }).join('');
+}
+
+// Advance order status (admin only) — O(n) DLL traversal
+function advanceOrderStatus(orderId){
+  const statusFlow=['pending','processing','shipped','out_for_delivery','delivered'];
+  let cur=orderHistory.head;
+  while(cur){
+    if(cur.data.id===orderId){
+      const idx=statusFlow.indexOf(cur.data.status);
+      if(idx<statusFlow.length-1){
+        cur.data.status=statusFlow[idx+1];
+        toast(`Order ${orderId} → ${cur.data.status}`,'success');
+        renderOrders();
+      }
+      break;
+    }
+    cur=cur.next;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 16: WISHLIST (Hash Set)
+   ════════════════════════════════════════════════════════════════ */
+function toggleWishlist(productId){
+  if(wishlistSet.has(productId)){wishlistSet.delete(productId);toast('Removed from wishlist','info');}
+  else{wishlistSet.add(productId);const p=productDB.get(productId);toast(`${p?.name} saved ❤️`,'success');}
+  updateNavBadges();
+  if(state.currentPage==='wishlist')renderWishlist();
+}
+function renderWishlist(){
+  const el=document.getElementById('wishlist-grid');
+  if(!wishlistSet.size){
+    el.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:80px 0">
+      <div style="font-size:64px;opacity:.3">🤍</div>
+      <div style="font-family:var(--font-display);font-size:24px;margin-top:16px">Your wishlist is empty</div>
+      <br/><button class="btn btn-primary" onclick="navigate('shop')">Browse Shop</button>
+    </div>`;
+    return;
+  }
+  // Sort wishlist by popularity using Min-Heap — O(w log w)
+  const items=[...wishlistSet].map(id=>productDB.get(id)).filter(Boolean);
+  const sorted=mergeSort(items,(a,b)=>b.popularity-a.popularity);
+  el.innerHTML=sorted.map(renderProductCard).join('');
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 17: DASHBOARD
+   ════════════════════════════════════════════════════════════════ */
+function renderDashboard(){
+  const totalRevenue=revenueSegTree.query(0,revenueData.length-1);
+  const last3=revenueSegTree.query(4,6), prev3=revenueSegTree.query(1,3);
+  const revChange=prev3?((last3-prev3)/prev3*100).toFixed(1):0;
+  const topProducts=topK(productDB.values(),5,p=>p.popularity); // Max-Heap O(n log 5)
+  const allOrders=orderHistory.toArray();
+
+  document.getElementById('dashboard-stats').innerHTML=[
+    {label:'Total Revenue (7d)',  value:formatPrice(totalRevenue),  change:`${revChange>0?'+':''}${revChange}%`, up:revChange>0, gold:true},
+    {label:'Total Orders',        value:allOrders.length.toLocaleString(), change:'+1 today',up:true},
+    {label:'Products Listed',     value:productDB.values().length,  change:'Active SKUs',up:true},
+    {label:'Low Stock Alerts',    value:productDB.values().filter(p=>p.stock<=p.reorderAt).length, change:'Need reorder',up:false},
+  ].map(s=>`<div class="stat-card">
+    <div class="stat-label">${s.label}</div>
+    <div class="stat-value ${s.gold?'gold':''}">${s.value}</div>
+    <div class="stat-change ${s.up?'stat-up':'stat-down'}">${s.up?'▲':'▼'} ${s.change}</div>
+  </div>`).join('');
+
+  const maxRev=Math.max(...revenueData);
+  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  document.getElementById('revenue-chart').innerHTML=revenueData.map((v,i)=>`
+    <div class="mini-bar" style="height:${Math.round((v/maxRev)*90)}px" title="${days[i]}: ${formatPrice(v)}"></div>`).join('');
+  document.getElementById('revenue-labels').innerHTML=days.map(d=>`<div class="mini-bar-label" style="flex:1">${d}</div>`).join('');
+
+  document.getElementById('top-products-list').innerHTML=topProducts.map((p,i)=>`
+    <div class="top-product-row">
+      <span class="top-product-rank">#${i+1}</span>
+      <span class="top-product-icon">${p.icon}</span>
+      <div class="top-product-info">
+        <div class="top-product-name">${p.name}</div>
+        <div class="top-product-sales">${p.reviews} sales · ${p.rating}★</div>
+      </div>
+      <span class="top-product-revenue">${formatPrice(p.price)}</span>
+    </div>`).join('');
+
+  const recent=allOrders.slice(-5).reverse();
+  const statusColor={pending:'badge-terra',processing:'badge-gold',shipped:'badge-gold',out_for_delivery:'badge-gold',delivered:'badge-success'};
+  document.getElementById('recent-orders-tbody').innerHTML=recent.map(o=>`
+    <tr>
+      <td style="font-family:var(--font-mono);color:var(--gold)">${o.id}</td>
+      <td>${o.customer||'–'}</td>
+      <td>${o.items.length}</td>
+      <td style="font-family:var(--font-mono)">${formatPrice(o.total)}</td>
+      <td><span class="badge ${statusColor[o.status]}">${o.status}</span></td>
+      <td style="color:var(--text-secondary)">${o.date}</td>
+    </tr>`).join('')||'<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:24px">No orders yet.</td></tr>';
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 18: INVENTORY (Min-Heap reorder + Stack undo)
+   ════════════════════════════════════════════════════════════════ */
+function getFilteredSortedInventory(){
+  let items=productDB.values();
+  // KMP text search — O(n·m)
+  if(state.invFilter){
+    const q=state.invFilter.toLowerCase();
+    items=items.filter(p=>kmpSearch(p.name.toLowerCase(),q).length>0||kmpSearch(p.id.toLowerCase(),q).length>0);
+  }
+  // Merge Sort — O(n log n)
+  switch(state.invSort){
+    case 'stock_asc':  return mergeSort(items,(a,b)=>a.stock-b.stock);
+    case 'stock_desc': return mergeSort(items,(a,b)=>b.stock-a.stock);
+    case 'price':      return mergeSort(items,(a,b)=>a.price-b.price);
+    default:           return mergeSort(items,(a,b)=>a.name.localeCompare(b.name));
+  }
+}
+function renderInventory(){
+  const all=getFilteredSortedInventory();
+  const lowCount=productDB.values().filter(p=>p.stock<=p.reorderAt).length;
+  document.getElementById('low-stock-badge').textContent=`${lowCount} Low Stock`;
+  document.getElementById('total-sku-badge').textContent=`${productDB.values().length} SKUs`;
+  const page=state.invPage, perPage=state.invItemsPerPage, total=all.length;
+  const pageItems=all.slice((page-1)*perPage,page*perPage);
+  document.getElementById('inventory-tbody').innerHTML=pageItems.map(p=>{
+    const pct=Math.min(Math.round((p.stock/(p.reorderAt*5))*100),100);
+    const fillColor=p.stock===0?'var(--danger)':p.stock<=p.reorderAt?'var(--terracotta)':'var(--success)';
+    const statusBadge=p.stock===0?'badge-danger':p.stock<=p.reorderAt?'badge-terra':'badge-success';
+    const statusLabel=p.stock===0?'Out of Stock':p.stock<=p.reorderAt?'Low Stock':'Adequate';
+    return `<tr>
+      <td style="font-family:var(--font-mono);color:var(--text-muted);font-size:12px">${p.id.toUpperCase()}</td>
+      <td><div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">${p.icon}</span><div><div style="font-weight:500">${p.name}</div><div style="font-size:11px;color:var(--text-muted)">${p.vendor}</div></div></div></td>
+      <td><span class="badge badge-gold">${p.category}</span></td>
+      <td style="font-family:var(--font-mono)">${p.price.toLocaleString()}</td>
+      <td><div class="stock-indicator"><span style="font-family:var(--font-mono);font-size:13px;color:${fillColor};min-width:28px">${p.stock}</span><div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${fillColor}"></div></div></div></td>
+      <td><span class="badge ${statusBadge}">${statusLabel}</span></td>
+      <td style="font-family:var(--font-mono);color:var(--text-secondary)">${p.reorderAt}</td>
+      <td><div class="table-action">
+        <button class="btn btn-outline btn-sm" onclick="showEditProduct('${p.id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDeleteProduct('${p.id}')">Remove</button>
+        <button class="btn btn-success btn-sm" onclick="reorderProduct('${p.id}')">Reorder</button>
+      </div></td>
+    </tr>`;
+  }).join('');
+  const pages=Math.ceil(total/perPage);
+  document.getElementById('inv-pagination').innerHTML=[...Array(pages)].map((_,i)=>`
+    <button class="page-btn ${i+1===page?'active':''}" onclick="goToInvPage(${i+1})">${i+1}</button>`).join('');
+}
+function filterInventory(val){state.invFilter=val;state.invPage=1;renderInventory();}
+function sortInventory(val){state.invSort=val;state.invPage=1;renderInventory();}
+function goToInvPage(n){state.invPage=n;renderInventory();}
+
+// Reorder: increases stock — pushes to inventory stack for undo
+function reorderProduct(id){
+  const p=productDB.get(id); if(!p)return;
+  const before={...p};
+  p.stock+=p.reorderAt*3;
+  productDB.set(id,p);
+  inventoryStack.push({action:'reorder',productId:id,before,after:{...p},timestamp:Date.now()});
+  toast(`Reorder placed: ${p.name}. Stock → ${p.stock}`,'success');
+  renderInventory();
+}
+
+// Confirm delete (admin only) — with undo via stack
+function confirmDeleteProduct(id){
+  const p=productDB.get(id); if(!p)return;
+  openModal(`Remove "${p.name}"`,
+    `<p style="color:var(--text-secondary);margin-bottom:16px">This will remove the product from the catalog. You can undo via the inventory history.</p>
+     <div style="background:var(--surface-2);padding:14px;border-radius:var(--radius-sm);display:flex;align-items:center;gap:12px">
+       <span style="font-size:32px">${p.icon}</span>
+       <div><strong>${p.name}</strong><br/><span style="color:var(--text-secondary);font-size:13px">${p.stock} in stock · ${formatPrice(p.price)}</span></div>
+     </div>`,
+    `<button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+     <button class="btn btn-danger" onclick="deleteProduct('${id}')">Confirm Remove</button>`);
+}
+function deleteProduct(id){
+  const p=productDB.get(id); if(!p)return;
+  inventoryStack.push({action:'delete',productId:id,before:{...p},after:null,timestamp:Date.now()});
+  productDB.delete(id); // HashMap O(1)
+  closeModal();
+  toast(`${p.name} removed from catalog (undo available)`,'info');
+  renderInventory();
+}
+
+// Undo last inventory action — Stack O(1) pop
+function showInventoryHistory(){
+  const history=inventoryStack.toArray();
+  openModal('Inventory Action History',
+    history.length?`<div class="history-panel">${history.map(f=>`
+      <div class="history-item">
+        <span class="history-item-icon">${f.action==='delete'?'🗑️':f.action==='reorder'?'📦':f.action==='add'?'➕':'✏️'}</span>
+        <div class="history-item-info">
+          <div class="history-item-action">${f.action.toUpperCase()}: ${f.before?.name||f.productId}</div>
+          <div style="font-size:12px;color:var(--text-secondary)">${f.action==='reorder'?`Stock ${f.before?.stock}→${f.after?.stock}`:f.action==='delete'?'Removed from catalog':f.action==='edit'?`Price/Stock edited`:''}</div>
+        </div>
+        <span class="history-item-time">${new Date(f.timestamp).toLocaleTimeString()}</span>
+      </div>`).join('')}</div>`
+    :'<p style="color:var(--text-secondary)">No inventory actions recorded yet.</p>',
+    history.length?`<button class="btn btn-outline" onclick="closeModal()">Close</button><button class="btn btn-danger" onclick="undoLastInventoryAction()">Undo Last Action</button>`
+    :`<button class="btn btn-outline" onclick="closeModal()">Close</button>`);
+}
+function undoLastInventoryAction(){
+  const frame=inventoryStack.pop(); if(!frame){toast('Nothing to undo','info');closeModal();return;}
+  if(frame.action==='delete'){productDB.set(frame.productId,frame.before);toast(`Restored: ${frame.before.name}`,'success');}
+  else if(frame.action==='reorder'){productDB.set(frame.productId,frame.before);toast(`Reverted reorder for: ${frame.before.name}`,'info');}
+  else if(frame.action==='edit'){productDB.set(frame.productId,frame.before);toast(`Reverted edit for: ${frame.before.name}`,'info');}
+  else if(frame.action==='add'){productDB.delete(frame.productId);toast(`Removed added product`,'info');}
+  closeModal(); renderInventory();
+}
+
+function showAddProductModal(){
+  openModal('Add New Product',`
+    <div style="display:grid;gap:14px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>Product Name</label><input class="input" id="np-name" placeholder="e.g. Samsung Galaxy"/></div>
+        <div><label>Vendor</label><input class="input" id="np-vendor" placeholder="e.g. TechZone KE"/></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>Category</label><select class="input select" id="np-cat">${CATEGORIES.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select></div>
+        <div><label>Icon (emoji)</label><input class="input" id="np-icon" placeholder="📱"/></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div><label>Price (KES)</label><input class="input" id="np-price" type="number" placeholder="25000"/></div>
+        <div><label>Original Price</label><input class="input" id="np-oprice" type="number" placeholder="30000"/></div>
+        <div><label>Initial Stock</label><input class="input" id="np-stock" type="number" placeholder="50"/></div>
+      </div>
+      <div><label>Description</label><textarea class="input" id="np-desc" placeholder="Product description…"></textarea></div>
+      <div><label>Tags (comma separated)</label><input class="input" id="np-tags" placeholder="e.g. phone, android, samsung"/></div>
+    </div>`,
+    `<button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+     <button class="btn btn-primary" onclick="addNewProduct()">Add Product</button>`);
+}
+function addNewProduct(){
+  const name=document.getElementById('np-name').value.trim();
+  const vendor=document.getElementById('np-vendor').value.trim();
+  const category=document.getElementById('np-cat').value;
+  const icon=document.getElementById('np-icon').value.trim()||'📦';
+  const price=parseInt(document.getElementById('np-price').value)||0;
+  const originalPrice=parseInt(document.getElementById('np-oprice').value)||price;
+  const stock=parseInt(document.getElementById('np-stock').value)||0;
+  const desc=document.getElementById('np-desc').value.trim();
+  const tags=document.getElementById('np-tags').value.split(',').map(t=>t.trim().toLowerCase()).filter(Boolean);
+  if(!name||!price){toast('Name and price required','error');return;}
+  const id='p'+(productDB.values().length+1).toString().padStart(3,'0');
+  const np={id,name,category,price,originalPrice,rating:0,reviews:0,stock,reorderAt:Math.max(5,Math.floor(stock*.15)),icon,vendor,desc,tags:[...tags,name.toLowerCase()],popularity:500};
+  productDB.set(id,np); // HashMap O(1)
+  searchTrie.insert(name,{id,name,icon}); // Trie O(L)
+  for(const tag of np.tags) searchTrie.insert(tag,{id,name,icon});
+  inventoryStack.push({action:'add',productId:id,before:null,after:{...np},timestamp:Date.now()});
+  closeModal(); toast(`${name} added to inventory`,'success'); renderInventory();
+}
+
+function showEditProduct(id){
+  const p=productDB.get(id); if(!p)return;
+  openModal(`Edit: ${p.name}`,`
+    <div style="display:grid;gap:14px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>Price (KES)</label><input class="input" id="ep-price" type="number" value="${p.price}"/></div>
+        <div><label>Original Price</label><input class="input" id="ep-oprice" type="number" value="${p.originalPrice}"/></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>Stock</label><input class="input" id="ep-stock" type="number" value="${p.stock}"/></div>
+        <div><label>Reorder At</label><input class="input" id="ep-reorder" type="number" value="${p.reorderAt}"/></div>
+      </div>
+    </div>`,
+    `<button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+     <button class="btn btn-primary" onclick="saveEditProduct('${id}')">Save Changes</button>`);
+}
+function saveEditProduct(id){
+  const p=productDB.get(id); if(!p)return;
+  const before={...p};
+  p.price=parseInt(document.getElementById('ep-price').value)||p.price;
+  p.originalPrice=parseInt(document.getElementById('ep-oprice').value)||p.originalPrice;
+  p.stock=parseInt(document.getElementById('ep-stock').value);
+  p.reorderAt=parseInt(document.getElementById('ep-reorder').value)||p.reorderAt;
+  productDB.set(id,p); // O(1)
+  inventoryStack.push({action:'edit',productId:id,before,after:{...p},timestamp:Date.now()});
+  closeModal(); toast(`${p.name} updated`,'success'); renderInventory();
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 19: CLIENT MANAGEMENT (Admin Only)
+   ════════════════════════════════════════════════════════════════ */
+function getFilteredSortedClients(){
+  let users=userDB.values();
+  // KMP search — O(n·m)
+  if(state.clientFilter){
+    const q=state.clientFilter.toLowerCase();
+    users=users.filter(u=>kmpSearch(u.name.toLowerCase(),q).length>0||kmpSearch(u.email.toLowerCase(),q).length>0);
+  }
+  // Merge Sort — O(n log n)
+  switch(state.clientSort){
+    case 'spend_desc': return mergeSort(users,(a,b)=>b.totalSpend-a.totalSpend);
+    case 'spend_asc':  return mergeSort(users,(a,b)=>a.totalSpend-b.totalSpend);
+    case 'orders':     return mergeSort(users,(a,b)=>b.orderCount-a.orderCount);
+    case 'recent':     return mergeSort(users,(a,b)=>b.joinDate.localeCompare(a.joinDate));
+    default:           return mergeSort(users,(a,b)=>a.name.localeCompare(b.name));
+  }
+}
+function renderClients(){
+  const clients=getFilteredSortedClients();
+  document.getElementById('total-clients-badge').textContent=`${userDB.values().length} Clients`;
+  document.getElementById('clients-tbody').innerHTML=clients.map(u=>`
+    <tr>
+      <td><div style="display:flex;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:600">${u.name.charAt(0)}</div>
+        <div style="font-weight:500">${u.name}</div>
+      </div></td>
+      <td style="font-family:var(--font-mono);font-size:12px">${u.email}</td>
+      <td><span class="badge ${u.role==='admin'?'badge-terra':'badge-gold'}">${u.role}</span></td>
+      <td style="font-family:var(--font-mono)">${u.orderCount}</td>
+      <td style="font-family:var(--font-mono);color:var(--gold)">${formatPrice(u.totalSpend)}</td>
+      <td style="color:var(--text-secondary)">${u.joinDate}</td>
+      <td><span class="badge ${u.active?'badge-success':'badge-danger'}">${u.active?'Active':'Inactive'}</span></td>
+      <td><div style="display:flex;gap:6px">
+        <button class="btn btn-outline btn-sm" onclick="showClientOrders('${u.email}')">Orders</button>
+        <button class="btn btn-danger btn-sm" onclick="toggleClientStatus('${u.email}')">${u.active?'Deactivate':'Activate'}</button>
+      </div></td>
+    </tr>`).join('');
+}
+function filterClients(val){state.clientFilter=val;renderClients();}
+function sortClients(val){state.clientSort=val;renderClients();}
+function toggleClientStatus(email){
+  const u=userDB.get(email); if(!u)return;
+  u.active=!u.active; userDB.set(email,u);
+  toast(`${u.name} ${u.active?'activated':'deactivated'}`,'info');
+  renderClients();
+}
+function showClientOrders(email){
+  const orders=orderHistory.toArray().filter(o=>o.email===email);
+  openModal(`Orders for ${email}`,
+    orders.length?`<div style="display:flex;flex-direction:column;gap:10px">
+      ${orders.map(o=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--surface-2);border-radius:var(--radius-sm)">
+        <span style="font-family:var(--font-mono);color:var(--gold)">${o.id}</span>
+        <span class="badge badge-gold">${o.status}</span>
+        <span>${o.date}</span>
+        <span style="font-family:var(--font-mono)">${formatPrice(o.total)}</span>
+      </div>`).join('')}
+    </div>`:'<p style="color:var(--text-secondary)">No orders found for this client.</p>',
+    `<button class="btn btn-outline" onclick="closeModal()">Close</button>`);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 20: DSA BENCHMARK PAGE
+   Big-O complexity analysis + live timing
+   ════════════════════════════════════════════════════════════════ */
+function renderBenchmarkPage(){
+  // Big-O reference table
+  const bigOData=[
+    ['HashMap get/set','O(1) avg','O(n)'],
+    ['Trie autocomplete','O(L + k)','O(n·L)'],
+    ['Min-Heap push/pop','O(log n)','O(n)'],
+    ['Min-Heap build','O(n)','O(n)'],
+    ['BST search','O(log n) avg','O(n)'],
+    ['BST range query','O(log n + k)','O(n)'],
+    ['Merge Sort','O(n log n)','O(n)'],
+    ['Quick Sort','O(n log n) avg','O(log n)'],
+    ['Heap Sort','O(n log n)','O(1) extra'],
+    ['Binary Search','O(log n)','O(1)'],
+    ['KMP Search','O(n + m)','O(m)'],
+    ['Top-K (heap)','O(n log k)','O(k)'],
+    ['BFS/DFS','O(V + E)','O(V)'],
+    ['Dijkstra','O((V+E)log V)','O(V)'],
+    ['LRU Cache get/put','O(1)','O(capacity)'],
+    ['Stack push/pop','O(1)','O(n)'],
+    ['Queue enqueue/dequeue','O(1)','O(n)'],
+    ['Segment Tree query','O(log n)','O(n)'],
+    ['Sliding Window Max','O(n)','O(k)'],
+  ];
+  document.getElementById('bigo-table').innerHTML=bigOData.map(([op,time,space])=>`
+    <tr>
+      <td style="padding:8px;font-size:13px;border-bottom:1px solid var(--border)">${op}</td>
+      <td style="padding:8px;font-size:13px;text-align:right;color:var(--gold);font-family:var(--font-mono);border-bottom:1px solid var(--border)">${time}</td>
+      <td style="padding:8px;font-size:13px;text-align:right;color:var(--text-secondary);font-family:var(--font-mono);border-bottom:1px solid var(--border)">${space}</td>
+    </tr>`).join('');
+}
+
+// Run all benchmarks with live timing — measures actual μs performance
+function runBenchmarks(){
+  const n=parseInt(document.getElementById('bench-n').value)||1000;
+  const results=[];
+
+  // Helper: time a function — returns ms
+  const time=(fn)=>{const s=performance.now();fn();return performance.now()-s;};
+
+  // 1. HashMap insert + lookup — O(1) avg
+  const hm=new HashMap(n*2);
+  const hmInsert=time(()=>{ for(let i=0;i<n;i++) hm.set(`key${i}`,i*2); });
+  const hmLookup=time(()=>{ for(let i=0;i<n;i++) hm.get(`key${Math.floor(Math.random()*n)}`); });
+  results.push({name:'HashMap — insert n',ms:hmInsert.toFixed(3),complexity:'O(n)',n});
+  results.push({name:'HashMap — lookup n',ms:hmLookup.toFixed(3),complexity:'O(n)',n});
+
+  // 2. Merge Sort — O(n log n)
+  const arr=[...Array(n)].map(()=>Math.floor(Math.random()*100000));
+  const msTime=time(()=>mergeSort([...arr]));
+  results.push({name:'Merge Sort',ms:msTime.toFixed(3),complexity:'O(n log n)',n});
+
+  // 3. Quick Sort — O(n log n) avg
+  const qsTime=time(()=>quickSort([...arr]));
+  results.push({name:'Quick Sort',ms:qsTime.toFixed(3),complexity:'O(n log n)',n});
+
+  // 4. Heap Sort — O(n log n)
+  const hsTime=time(()=>heapSort([...arr]));
+  results.push({name:'Heap Sort',ms:hsTime.toFixed(3),complexity:'O(n log n)',n});
+
+  // 5. Binary Search on sorted array — O(log n)
+  const sorted=[...arr].sort((a,b)=>a-b);
+  const bsTime=time(()=>{ for(let i=0;i<1000;i++) binarySearch(sorted,sorted[Math.floor(Math.random()*n)]); });
+  results.push({name:'Binary Search × 1000',ms:bsTime.toFixed(3),complexity:'O(log n) each',n:'1000'});
+
+  // 6. KMP search — O(n+m)
+  const text=arr.map(x=>x.toString()).join(' ');
+  const pattern=arr[Math.floor(n/2)].toString();
+  const kmpTime=time(()=>kmpSearch(text,pattern));
+  results.push({name:'KMP Search',ms:kmpTime.toFixed(3),complexity:'O(n+m)',n:`text:${text.length}`});
+
+  // 7. Min-Heap build + extract all — O(n log n)
+  const heapTime=time(()=>{const h=MinHeap.fromArray([...arr],(a,b)=>a-b);while(h.size())h.pop();});
+  results.push({name:'Heap Build+Extract All',ms:heapTime.toFixed(3),complexity:'O(n log n)',n});
+
+  // 8. Top-K — O(n log k)
+  const k=10;
+  const tkTime=time(()=>topK(arr,k));
+  results.push({name:`Top-${k} (heap)`,ms:tkTime.toFixed(3),complexity:'O(n log k)',n});
+
+  // 9. Trie — insert + autocomplete
+  const t=new Trie();
+  const trieInsert=time(()=>arr.slice(0,100).forEach(x=>t.insert(x.toString())));
+  const trieAC=time(()=>{ for(let i=0;i<100;i++) t.autocomplete(arr[i].toString().slice(0,2)); });
+  results.push({name:'Trie — insert 100 words',ms:trieInsert.toFixed(3),complexity:'O(L·n)',n:100});
+  results.push({name:'Trie — autocomplete × 100',ms:trieAC.toFixed(3),complexity:'O(L+k) each',n:100});
+
+  // 10. Segment Tree build + 1000 queries
+  const stArr=[...Array(n)].map(()=>Math.floor(Math.random()*100000));
+  const st=new SegmentTree(stArr);
+  const stQuery=time(()=>{ for(let i=0;i<1000;i++){const l=Math.floor(Math.random()*n),r=l+Math.floor(Math.random()*(n-l));st.query(l,r);} });
+  results.push({name:'Seg Tree — build',ms:'(done above)',complexity:'O(n)',n});
+  results.push({name:'Seg Tree — 1000 queries',ms:stQuery.toFixed(3),complexity:'O(log n) each',n:'1000'});
+
+  // Render results
+  const maxMs=Math.max(...results.filter(r=>parseFloat(r.ms)>0).map(r=>parseFloat(r.ms)));
+  document.getElementById('bench-results').innerHTML=`
+    <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">n = ${n} · All times in milliseconds</div>
+    <div class="benchmark-panel">
+      ${results.map(r=>`<div class="benchmark-row">
+        <span class="benchmark-name">${r.name}</span>
+        <div class="benchmark-bar-wrap"><div class="benchmark-bar" style="width:${Math.min(parseFloat(r.ms)/maxMs*100,100)||5}%"></div></div>
+        <span class="benchmark-time">${r.ms} ms</span>
+        <span class="benchmark-complexity">${r.complexity}</span>
+      </div>`).join('')}
+    </div>`;
+
+  // Sort comparison chart
+  const nv=[100,500,1000,2000,5000];
+  const sResults=nv.map(sz=>{
+    const a=[...Array(sz)].map(()=>Math.floor(Math.random()*100000));
+    const ms=time(()=>mergeSort([...a]));
+    const qs=time(()=>quickSort([...a]));
+    const hs=time(()=>heapSort([...a]));
+    return{sz,ms:ms.toFixed(2),qs:qs.toFixed(2),hs:hs.toFixed(2)};
+  });
+  document.getElementById('sort-comparison').innerHTML=[
+    {label:'Merge Sort',key:'ms',color:'var(--gold)'},
+    {label:'Quick Sort',key:'qs',color:'var(--terra-light)'},
+    {label:'Heap Sort', key:'hs',color:'var(--info)'},
+  ].map(alg=>`
+    <div>
+      <div style="font-size:13px;font-weight:500;color:${alg.color};margin-bottom:12px">${alg.label} — O(n log n)</div>
+      ${sResults.map(r=>`
+        <div style="margin-bottom:6px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:11px;font-family:var(--font-mono);color:var(--text-muted);width:40px">n=${r.sz}</span>
+          <div style="flex:1;height:5px;background:var(--surface-3);border-radius:2px;overflow:hidden">
+            <div style="width:${Math.min(parseFloat(r[alg.key])/parseFloat(sResults[4][alg.key])*100,100)}%;height:100%;background:${alg.color};border-radius:2px"></div>
+          </div>
+          <span style="font-size:11px;font-family:var(--font-mono);color:${alg.color};width:50px;text-align:right">${r[alg.key]}ms</span>
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION 21: BOOT
+   ════════════════════════════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded',()=>{
+  initDataStructures();
+  // Don't render home yet — wait for login
+  console.log('%c🛒 Biashara Hub v2 — DSA Map','color:#c9a84c;font-size:14px;font-weight:bold');
+  const dsaMap={
+    'HashMap':'Product DB, User DB, Cart, Coupons — O(1) avg',
+    'Trie':'Search Autocomplete — O(L+k)',
+    'Min/Max Heap':'Reorder Alerts, Top-K, Dijkstra PQ — O(log n)',
+    'BST':'Category/Price Index — O(log n)',
+    'Stack':'Cart Undo, Inventory History — O(1)',
+    'Queue':'Order Processing FIFO — O(1)',
+    'DLL':'Order History — O(1) append',
+    'LRU Cache':'Product Detail Pages — O(1)',
+    'Graph+BFS/DFS':'Similar Products — O(V+E)',
+    'Segment Tree':'Revenue Range Queries — O(log n)',
+    'Merge Sort':'Product/Client Sorting — O(n log n)',
+    'KMP':'Full-Text Search — O(n+m)',
+    'Dijkstra':'Delivery Routing — O((V+E)log V)',
+    'Binary Search':'Price Range Bounds — O(log n)',
+    'Sliding Window':'Revenue Trends — O(n)',
+  };
+  Object.entries(dsaMap).forEach(([k,v])=>console.log(`%c${k}%c: ${v}`,'color:#5b9bd5;font-weight:bold','color:rgba(240,235,224,.6)'));
+});
+</script>
+</body>
+</html>
