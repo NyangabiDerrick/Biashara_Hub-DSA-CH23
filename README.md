@@ -1,7 +1,7 @@
 # Project: Biashara Hub
 # Author: Nyangabi Derrick Mburu
 # Date: 2026
-# Description: Biashara Hub is a premium e-commerce platform designed to provide a seamless and luxurious shopping experience. The interface is crafted to be elegant and user-friendly, with a focus on high-quality visuals and intuitive navigation. Key features include a dynamic hero section, advanced search functionality, comprehensive product filtering, and an engaging dashboard for sellers. Biashara Hub aims to connect discerning customers with exclusive products while empowering sellers with powerful tools to grow their businesses.
+# Description: Biashara Hub is a premium e-commerce platform designed to provide a seamless and luxurious shopping experience.
 
 # Biashara_Hub-DSA-CH23
 An algorithmic approach to e-commerce management. Biashara-Hub implements advanced data structures and optimized algorithms to handle real-world business logic and data flow efficiently.
